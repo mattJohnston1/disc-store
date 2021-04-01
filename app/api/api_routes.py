@@ -18,8 +18,8 @@ def api_discs_one(discId):
     return disc.to_dict()
 
 
-@api_routes.route("/discs/type/<int:typeId>")
-def api_type_discs(typeId):
+@api_routes.route("/discs/brand/<int:typeId>")
+def api_brand_discs(typeId):
     discs = Disc.query.filter_by(type_id=typeId).all()
     return {"discs": [disc.to_dict() for disc in discs]}
 

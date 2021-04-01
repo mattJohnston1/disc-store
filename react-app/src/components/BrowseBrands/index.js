@@ -3,32 +3,21 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getDiscs } from '../../store/discs';
 import DiscPanel from '../DiscPanel';
 import { useHistory, useParams } from 'react-router-dom';
-import './Browse.css';
+// import './Browse.css';
 
-export default function Browse() {
+export default function BrowseBrands() {
   let history = useHistory();
   const dispatch = useDispatch();
-
   const [isLoaded, setIsLoaded] = useState(false);
-
   const discsObj = useSelector((state) => state.discs);
-  const discs = Object.values(discsObj)
+  const discs = Object.values(discsObj);
 
-  const { type, id } = useParams()
-  console.log(discs)
-  console.log(type)
+  const { id } = useParams();
   console.log(id)
-
   useEffect(async () => {
-    if (type === undefined) {
-      dispatch(getDiscs());
-    } else if (type === "stabilities") {
-      dispatch(getDiscs(true, false, id))
-    } else if (type === "brands") {
-      dispatch(getDiscs(false, true, id))
-    }
+    await dispatch(getDiscs(true, false, id));
     setIsLoaded(true);
-  }, [useParams()])
+  }, [])
   return (isLoaded && (
     <div className="browse">
       <div className="browse-sidebar">SideBar, yay</div>

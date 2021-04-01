@@ -54,32 +54,32 @@ const NavBar = ({ setAuthenticated }) => {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/browse/innova" exact={true} activeClassName="active">
-                Innova
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/browse/discraft" exact={true} activeClassName="active">
+              <NavLink to={`/browse/brands/${1}`} exact={true} activeClassName="active">
                 Discraft
               </NavLink>
             </li>
             <li>
-              <NavLink to="/browse/dynamic-discs" exact={true} activeClassName="active">
+              <NavLink to={`/browse/brands/${2}`} exact={true} activeClassName="active">
+                Innova
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to={`/browse/brands/${3}`} exact={true} activeClassName="active">
                 Dynamic Discs
               </NavLink>
             </li>
             <li>
-              <NavLink to="/browse/drivers" exact={true} activeClassName="active">
+              <NavLink to={`/browse/stabilities/${1}`} exact={true} activeClassName="active">
                 Drivers
               </NavLink>
             </li>
             <li>
-              <NavLink to="/browse/midranges" exact={true} activeClassName="active">
+              <NavLink to={`/browse/stabilities/${2}`} exact={true} activeClassName="active">
                 Midranges
               </NavLink>
             </li>
             <li>
-              <NavLink to="/browse/putters" exact={true} activeClassName="active">
+              <NavLink to={`/browse/stabilities/${3}`} exact={true} activeClassName="active">
                 Putters
               </NavLink>
             </li>

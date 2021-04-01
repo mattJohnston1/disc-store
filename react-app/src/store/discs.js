@@ -9,9 +9,9 @@ const setDiscs = (discs) => ({
 export const getDiscs = (type, stability, id) => async (dispatch) => {
   let res = null;
   if (type === true) {
-    res = await fetch(`api/discs/type/${id}`)
+    res = await fetch(`/api/discs/brand/${id}`)
   } else if (stability === true) {
-    res = await fetch(`api/discs/stability/${id}`)
+    res = await fetch(`/api/discs/stability/${id}`)
   } else {
     res = await fetch('/api/discs');
   }

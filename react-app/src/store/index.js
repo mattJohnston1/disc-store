@@ -1,9 +1,11 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import discs from './discs';
+import disc from './disc';
 
 const rootReducer = combineReducers({
   discs,
+  disc,
 })
 
 const logger = require('redux-logger').default;

@@ -11,7 +11,9 @@ import Browse from "./components/Browse";
 import Disc from "./components/Disc";
 import Checkout from "./components/Checkout";
 import { authenticate } from "./services/auth";
-import { getDiscs } from "./store/discs";
+import BrowseBrands from "./components/BrowseBrands";
+import BrowseStabilities from "./components/BrowseStabilities";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -51,15 +53,18 @@ function App() {
         <ProtectedRoute path="/users/:userId" exact={true} authenticated={authenticated}>
           <User />
         </ProtectedRoute>
-        <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
+        <Route path="/" exact={true} authenticated={authenticated}>
           <h1>My Home Page</h1>
-        </ProtectedRoute>
+        </Route>
         <Route path="/browse" exact={true}>
           <Browse />
         </Route>
-        <Route path="/browse/type">
-          <Checkout />
+        <Route path="/browse/:type/:id">
+          <Browse />
         </Route>
+        {/* <Route path="/browse/stabilities/:id">
+          <Browse />
+        </Route> */}
         <Route path="/discs/:id">
           <Disc />
         </Route>

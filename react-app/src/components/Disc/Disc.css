@@ -1,0 +1,54 @@
+.disc {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.disc-product-image {
+  width: 45rem;
+  margin: 5rem 0 0 0;
+}
+
+.product-side-image {
+  width: 3rem;
+  margin-bottom: 20px;
+  border-radius: 50%;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+.disc-product-images-div {
+  display: flex;
+  flex-direction: column;
+  margin: 5rem 0px 0px 20px;
+  align-items: center;
+  padding: 10px;
+}
+
+.disc-product-details {
+  width: 40rem;
+  margin: 5rem 0 0 0;
+}
+
+.disc-product-title {
+  color: #1c1c1c;
+  font-size:  30px;
+  font-weight: 200;
+  font-family: 'Noto Serif TC', serif;
+  line-height: 20px;
+}
+
+.disc-product-price {
+  color: #1c1c1c;
+  font-size:  20px;
+  font-weight: 200;
+  font-family: 'Noto Serif TC', serif;
+  line-height: 20px;
+}
+
+.detail {
+  margin: 0px 0px 20px 20px;
+}
+
+.disc-product-colors {
+  margin-top: 55px;
+}
