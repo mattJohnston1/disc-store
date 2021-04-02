@@ -1,0 +1,4 @@
+.browse-discs {
+  display: flex;
+  flex-wrap: wrap;
+}

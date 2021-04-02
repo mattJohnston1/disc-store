@@ -1,0 +1,81 @@
+.active {
+  border: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+.colors {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 15px;
+}
+
+.Pink {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #F5E3F2;
+  margin: 0px 10px 3px 0px;
+  cursor: pointer;
+}
+
+.Powder-blue {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #D0EAEE;
+  margin: 0px 10px 3px 0px;
+  cursor: pointer;
+}
+
+.Sage-green {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #BCEBC9;
+  margin: 0px 10px 3px 0px;
+  cursor: pointer;
+}
+
+.Lilac {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #F0DFE9;
+  margin: 0px 10px 3px 0px;
+  cursor: pointer;
+}
+
+.White {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #E8E8E8;
+  margin: 0px 10px 3px 0px;
+  cursor: pointer;
+}
+
+.Buttermilk-yellow {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #F2E5AA;
+  margin: 0px 10px 3px 0px;
+  cursor: pointer;
+}
+
+.Navy {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #373656;
+  margin: 0px 10px 3px 0px;
+  cursor: pointer;
+}
+
+.Black {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #000000;
+  margin: 0px 10px 3px 0px;
+  cursor: pointer;
+}
