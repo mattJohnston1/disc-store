@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getDisc } from '../../store/disc';
 import { useParams } from 'react-router-dom';
-import AvailableColors from '../AvailableColors'
+import AvailableColors from '../AvailableColors';
+import DiscDetails from '../DiscDetails';
 import './Disc.css'
 
 export default function Disc() {
@@ -37,6 +38,13 @@ export default function Disc() {
         </div>
         <div className="disc-product-colors detail">
           <AvailableColors />
+        </div>
+        <div className="disc-product-btns">
+          <button className="watchlist-button detail">ADD TO WATCHLIST</button>
+          <button className="disc-product-add-btn detail">ADD TO BAG</button>
+        </div>
+        <div className="disc-product-details">
+          <DiscDetails disc={disc} />
         </div>
       </div>
     </div>

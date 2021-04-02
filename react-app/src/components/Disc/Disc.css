@@ -14,6 +14,7 @@
   margin-bottom: 20px;
   border-radius: 50%;
   border: 2px solid rgba(0, 0, 0, 0.1);
+  cursor: pointer;
 }
 
 .disc-product-images-div {
@@ -51,4 +52,31 @@
 
 .disc-product-colors {
   margin-top: 55px;
+}
+
+.watchlist-button {
+  background-color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  border: 1px solid black;
+  padding: 10px 45px 10px 45px;
+  cursor: pointer;
+}
+
+.disc-product-add-btn {
+  background-color: black;
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+  font-size: 12px;
+  border: 1px solid black;
+  padding: 10px 45px 10px 45px;
+  cursor: pointer;
+}
+
+.watchlist-button:focus, .disc-product-add-btn:focus {
+  outline: none;
+}
+
+.disc-product-btns {
+  margin-top: 10px;
 }

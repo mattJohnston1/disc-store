@@ -1,0 +1,9 @@
+.specs {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.spec-num {
+  margin-right: 80px;
+}
