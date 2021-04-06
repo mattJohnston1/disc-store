@@ -1,0 +1,17 @@
+.box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0px 130px;
+}
+
+.boxes {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.shipping-header {
+  font-size: 20px;
+  margin-bottom: 5px;
+}
