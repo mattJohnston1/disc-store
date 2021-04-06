@@ -3,7 +3,7 @@ import './Details.css';
 
 export default function DiscDetails({ disc }) {
   const [descriptionOpen, setDescriptionOpen] = useState(true);
-  const [specificationsOpen, setSpecificationsOpen] = useState(false);
+  const [specificationsOpen, setSpecificationsOpen] = useState(true);
   const [measurementsOpen, setMeasurementsOpen] = useState(false);
   const specificationPlus = document.getElementById("specification-plus")
   const measurementPlus = document.getElementById("measurement-plus")
