@@ -8,11 +8,18 @@
   justify-self: center; */
 }
 
+.navbar-img {
+  width: auto;
+  height: 20px;
+}
+
 .navbar-top-text {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 12px;
   line-height: 18px;
   text-align: center;
+  margin-left: 10px;
+  margin-right: 20px;
 }
 
 .navbar-top-controls {
@@ -81,4 +88,28 @@
 
 .nav-list a:hover {
   border-bottom: 1px solid black;
+}
+
+.navbar {
+  padding-top: 10px;
+}
+
+.view-cart-btn {
+  cursor: pointer;
+  height: 25px;
+  padding-top: 3px;
+  margin: 0px 20px;
+}
+
+.sign-in-btn {
+  cursor: pointer;
+  height: 25px;
+  padding-top: 3px;
+  margin: 0px 20px 0px 35px;
+}
+
+.login {
+  color: black;
+  margin-left: 10px;
+  text-decoration: none;
 }
