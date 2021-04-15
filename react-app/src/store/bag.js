@@ -5,6 +5,7 @@ export const addDisc = (disc) => ({
   disc,
 })
 
+// function
 //add a delete function and an add to the amoounts based off an index
 const initialState = { products: [], amounts: [] }
 
