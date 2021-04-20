@@ -24,6 +24,9 @@ class Disc(db.Model):
   rim_width = db.Column(db.Float, nullable=False)
   max_weight = db.Column(db.Float, nullable=False)
 
+  # brand = db.relationship("Brand")
+  # discType = db.relationship("Type")
+
   def to_dict(self):
     return {
       "id": self.id,
@@ -44,4 +47,7 @@ class Disc(db.Model):
       "rim_depth": self.rim_depth,
       "rim_width": self.rim_width,
       "max_weight": self.max_weight,
+
+      # "brand": self.brand.to_dict(),
+      # "type": self.discType.to_dict
     }

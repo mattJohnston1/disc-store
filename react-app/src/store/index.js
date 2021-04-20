@@ -2,10 +2,16 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import discs from './discs';
 import disc from './disc';
+import bagState from './checkoutState';
+import currentImage from './currentImage';
+import bag from './bag';
 
 const rootReducer = combineReducers({
   discs,
   disc,
+  bagState,
+  currentImage,
+  bag,
 })
 
 const logger = require('redux-logger').default;

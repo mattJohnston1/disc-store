@@ -89,3 +89,12 @@
   align-items: center;
   justify-content: space-around;
 }
+
+/* .cart-modal {
+  position: absolute;
+  left: 70%;
+  top: 0;
+  background-color: black;
+  width: 30%;
+  height: 100%;
+} */
