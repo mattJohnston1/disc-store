@@ -23,15 +23,29 @@ export default function Browse() {
     if (type === undefined) {
       dispatch(getDiscs());
     } else if (type === "stabilities") {
-      dispatch(getDiscs(true, false, id))
+      dispatch(getDiscs(false, true, id)) //maybe add a -1 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     } else if (type === "brands") {
-      dispatch(getDiscs(false, true, id))
+      dispatch(getDiscs(true, false, id))
     }
     setIsLoaded(true);
   }, [useParams()])
   return (isLoaded && (
     <div className="browse">
-      <div className="browse-sidebar">SideBar, yay</div>
+      <div className="browse-sidebar">
+        <div className="sidebar-title"></div>
+        <div className="sidebar-selections">
+          <div className="sidebar-category">Sort By</div>
+          <div className="sidebar-category">Featured</div>
+          <div className="sidebar-category">Brand</div>
+          <div className="sidebar-category">Color</div>
+          <div className="sidebar-category">Plastic</div>
+          <div className="sidebar-category">Speed</div>
+          <div className="sidebar-category">Glide</div>
+          <div className="sidebar-category">Turn</div>
+          <div className="sidebar-category">Fade</div>
+
+        </div>
+      </div>
       <div className="browse-discs">
         {discs.map((disc) => (
           <div onClick={() => history.push(`/discs/${disc.id}`)}>

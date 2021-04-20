@@ -28,13 +28,13 @@ export default function DiscDetails({ disc }) {
       <div className="tab">
         <div className="product-description-tab" onClick={handleClickDescription}><div>Product Description</div>{!descriptionOpen && <div className="plus" id="description-plus">+</div>}{descriptionOpen && <div className="plus" id="description-plus">-</div>}</div>
         {descriptionOpen &&
-          <div className="spec-description">{disc.description}</div>
+          <div className="spec-description spec-anim">{disc.description}</div>
         }
       </div>
       <div>
         <div className="product-description-tab" onClick={handleClickSpecification}><div>Specifications</div>{!specificationsOpen && <div className="plus">+</div>}{specificationsOpen && <div className="plus">-</div>}</div>
         {specificationsOpen &&
-          <div>
+          <div className="spec-anim">
             <div className="specs">
               <div className="spec">Speed</div> <div className="spec-num">{disc.speed}</div>
             </div>
@@ -53,7 +53,7 @@ export default function DiscDetails({ disc }) {
       <div>
         <div className="product-description-tab" onClick={handleClickMeasurements}><div>Measurements</div>{!measurementsOpen && <div className="plus">+</div>}{measurementsOpen && <div className="plus">-</div>}</div>
         {measurementsOpen &&
-          <div>
+          <div className="spec-anim">
             <div className="specs">
               <div className="spec">Rim-Depth</div> <div className="spec-num">{disc.rim_depth}c.m.</div>
             </div>
