@@ -31,27 +31,52 @@ export default function Browse() {
   }, [useParams()])
   return (isLoaded && (
     <div className="browse">
-      <div className="browse-sidebar">
-        <div className="sidebar-title"></div>
-        <div className="sidebar-selections">
-          <div className="sidebar-category">Sort By</div>
-          <div className="sidebar-category">Featured</div>
-          <div className="sidebar-category">Brand</div>
-          <div className="sidebar-category">Color</div>
-          <div className="sidebar-category">Plastic</div>
-          <div className="sidebar-category">Speed</div>
-          <div className="sidebar-category">Glide</div>
-          <div className="sidebar-category">Turn</div>
-          <div className="sidebar-category">Fade</div>
-
-        </div>
+      <div className="browse-top">
+        <img className="browse-image" src="https://cdn.buttercms.com/UaR6hXbxSGi4pXwiAWEN" />
+        {/* <div className="centered-text">Innova</div> */}
       </div>
-      <div className="browse-discs">
-        {discs.map((disc) => (
-          <div onClick={() => history.push(`/discs/${disc.id}`)}>
-            <DiscPanel disc={disc} />
+      <div className="browse-bottom">
+        <div className="browse-sidebar">
+          <div className="sidebar-title">Disc General</div>
+          <div className="sidebar-description">Pick from any of our selections from the most popular and the most widely used discs.</div>
+          <div className="sidebar-selections">
+            <div className="sidebar-category">
+              <div className="category-name">Sort By</div>
+              <div className="category-arrow">˅</div>
+            </div>
+            <div className="sidebar-category">
+              <div className="category-name">Brand</div>
+              <div className="category-arrow">˅</div>
+            </div>
+            <div className="sidebar-category">
+              <div className="category-name">Disc Type</div>
+              <div className="category-arrow">˅</div>
+            </div>
+            <div className="sidebar-category">
+              <div className="category-name">Speed</div>
+              <div className="category-arrow">˅</div>
+            </div>
+            <div className="sidebar-category">
+              <div className="category-name">Glide</div>
+              <div className="category-arrow">˅</div>
+            </div>
+            <div className="sidebar-category">
+              <div className="category-name">Turn</div>
+              <div className="category-arrow">˅</div>
+            </div>
+            <div className="sidebar-category">
+              <div className="category-name">Fade</div>
+              <div className="category-arrow">˅</div>
+            </div>
           </div>
-        ))}
+        </div>
+        <div className="browse-discs">
+          {discs.map((disc) => (
+            <div onClick={() => history.push(`/discs/${disc.id}`)}>
+              <DiscPanel disc={disc} />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   )

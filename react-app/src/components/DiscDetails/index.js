@@ -5,9 +5,6 @@ export default function DiscDetails({ disc }) {
   const [descriptionOpen, setDescriptionOpen] = useState(true);
   const [specificationsOpen, setSpecificationsOpen] = useState(true);
   const [measurementsOpen, setMeasurementsOpen] = useState(false);
-  const specificationPlus = document.getElementById("specification-plus")
-  const measurementPlus = document.getElementById("measurement-plus")
-  console.log(disc)
   function getButton() {
     const descriptionPlus = document.querySelectorAll("plus")
     descriptionPlus.innerHTML = "-"
@@ -22,7 +19,6 @@ export default function DiscDetails({ disc }) {
   const handleClickMeasurements = () => {
     setMeasurementsOpen(!measurementsOpen)
   }
-
   return (
     <div className="detail">
       <div className="tab">

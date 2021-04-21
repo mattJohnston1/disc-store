@@ -1,0 +1,58 @@
+.checkout-info {
+  background-color: #f4f6f8;
+  width: 450px;
+  /* display: flex;
+  flex-direction: column;
+  justify-content: space-between; */
+  padding: 5px 0px 20px 0px;
+}
+
+.checkout-product-img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+  object-position: 50% 50%;
+}
+
+.checkout-product-img-div {
+  max-width: 70px;
+  height: 90px;
+  padding: 0px 5px;
+  background-color: white;
+  border: 1px solid darkgray;
+}
+
+.checkout-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  padding: 15px 0 0 0;
+}
+
+.checkout-product-price {
+  color: #333333;
+  font-family: Helvetica;
+  font-size: large;
+  font-weight: 550;
+}
+
+.checkout-product-name {
+  font-family: 'Canela';
+  font-size: 18px;
+}
+.checkout-product-brand {
+  font-family: 'sans-serif';
+  margin-top: 10px;
+  font-size: 12px;
+}
+
+.checkout-item-count {
+  position: relative;
+  top: 27%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: black;
+  font-family: 'canela';
+  font-size: 15px;
+}

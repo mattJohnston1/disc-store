@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addDiscByIndex, removeByIndex } from '../../store/bag';
 import { closeBag } from '../../store/checkoutState';
+import { Link } from 'react-router-dom';
 import './Cart.css';
 
 export default function Cart() {
@@ -46,7 +47,7 @@ export default function Cart() {
                   </div>
                 </div>
               ))}
-              <button className="checkout-btn">Continue to Checkout</button>
+              <Link to="/checkout" style={{ textDecoration: 'none', color: 'black', width: "250px", margin: "100px 0px" }} activeClassName="checkout-btn" className="checkout-btn">Continue to Checkout</Link>
             </div>
           )}
         </div>
