@@ -15,7 +15,7 @@ export default function Checkout() {
       </div>
       <div className="checkout-info">
         {products.map((product, idx) => (
-          <div className="checkout-item">
+          (idx <= 3 && <div className="checkout-item">
             {console.log("amounts", amounts)}
             <div className="checkout-product-img-div">
               <img className="checkout-product-img" src={product.images[0]} />
@@ -28,8 +28,9 @@ export default function Checkout() {
             <div className="checkout-product-price a">
               <div className="checkout-product-price">$ {(product.price * amounts[idx]).toFixed(2)} USD</div>
             </div>
-          </div>
+          </div>)
         ))}
+        {products.length > 3 && (<div className="extra-items">{products.length - 4} more item(s)</div>)}
       </div>
     </div>
   )
