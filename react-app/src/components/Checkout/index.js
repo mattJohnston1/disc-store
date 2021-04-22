@@ -12,6 +12,12 @@ export default function Checkout() {
         <div className="checkout-nav"></div>
         <div className="checkout-login"></div>
 
+        <div className="checkout-form">
+
+
+
+        </div>
+
       </div>
       <div className="checkout-info">
         {products.map((product, idx) => (
@@ -30,7 +36,22 @@ export default function Checkout() {
             </div>
           </div>)
         ))}
-        {products.length > 3 && (<div className="extra-items">{products.length - 4} more item(s)</div>)}
+        <div className="Subtotal sub">
+          <div>Subtotal</div>
+          <div className="checkout-product-price">$300.00 USD</div>
+        </div>
+        <div className="Shipping sub">
+          <div>Shipping</div>
+          <div className="checkout-product-price">$9.35</div>
+        </div>
+
+        <div className="totals-break">___________________________</div>
+
+        <div className="Total">
+          <div>Shipping</div>
+          <div className="checkout-total-price">$9.35</div>
+        </div>
+        {/* {products.length > 3 && (<div className="extra-items">{products.length - 4} more item(s)</div>)} */}
       </div>
     </div>
   )

@@ -13,12 +13,15 @@ import Checkout from "./components/Checkout";
 import { authenticate } from "./services/auth";
 import BrowseBrands from "./components/BrowseBrands";
 import BrowseStabilities from "./components/BrowseStabilities";
+import Cart from './components/Cart';
 
 
 function App() {
   const dispatch = useDispatch();
   const [authenticated, setAuthenticated] = useState(false);
   const [loaded, setLoaded] = useState(false);
+
+  const bagOpen = useSelector((state) => state.bagState.open);
 
   useEffect(() => {
     (async () => {
@@ -72,6 +75,7 @@ function App() {
           <Checkout />
         </Route>
       </Switch>
+      {bagOpen && <Cart />}
     </BrowserRouter>
   );
 }

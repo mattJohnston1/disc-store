@@ -1,6 +1,7 @@
 const ADD_DISC = 'bag/addDisc';
 const ADD_DISC_BY_INDEX = 'bag/addDiscByIndex';
 const REMOVE_BY_INDEX = 'bag/removeDiscByIndex';
+const REDUCE_DISC_BY_INDEX = 'bag/reduceDiscByIndex';
 
 export const addDisc = (disc) => ({
   type: ADD_DISC,
@@ -9,6 +10,11 @@ export const addDisc = (disc) => ({
 
 export const addDiscByIndex = (idx) => ({
   type: ADD_DISC_BY_INDEX,
+  idx,
+})
+
+export const reduceDiscByIndex = (idx) => ({
+  type: REDUCE_DISC_BY_INDEX,
   idx,
 })
 
@@ -40,11 +46,17 @@ const initialState = { products: [], amounts: [] }
 
 function reducer(state = initialState, action) {
   let newState;
+  let idx;
   switch (action.type) {
     case ADD_DISC_BY_INDEX:
       newState = { ...state };
-      let idx = action.idx;
+      idx = action.idx;
       newState.amounts[idx] += 1;
+      return newState;
+    case REDUCE_DISC_BY_INDEX:
+      newState = { ...state };
+      idx = action.idx;
+      newState.amounts[idx] -= 1;
       return newState;
     case ADD_DISC:
       newState = { ...state };

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getDiscs } from '../../store/discs';
 import DiscPanel from '../DiscPanel';
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory, useParams, useLocation } from 'react-router-dom';
 import './Browse.css';
 
 export default function Browse() {
@@ -12,18 +12,19 @@ export default function Browse() {
   const [isLoaded, setIsLoaded] = useState(false);
 
   const discsObj = useSelector((state) => state.discs);
-  const discs = Object.values(discsObj)
+  const discs = Object.values(discsObj)  //keep this and have a filtered one beneath
 
   const { type, id } = useParams()
-  console.log(discs)
-  console.log(type)
-  console.log(id)
 
-  useEffect(async () => {
+  let query = new URLSearchParams(useLocation().search);
+  console.log(query.get("asdf"))
+
+
+  useEffect(() => {
     if (type === undefined) {
       dispatch(getDiscs());
     } else if (type === "stabilities") {
-      dispatch(getDiscs(false, true, id)) //maybe add a -1 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+      dispatch(getDiscs(false, true, id))
     } else if (type === "brands") {
       dispatch(getDiscs(true, false, id))
     }

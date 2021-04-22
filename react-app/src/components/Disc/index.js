@@ -16,9 +16,8 @@ export default function Disc() {
   const { id } = useParams();
   const [isLoaded, setIsLoaded] = useState(false);
 
-  const currentImage = useSelector((state) => state.currentImage.image)
+  const currentImage = useSelector((state) => state.currentImage.image);
   const disc = useSelector((state) => state.disc.disc);
-  const bagOpen = useSelector((state) => state.bagState.open)
 
   useEffect(async () => {
     await dispatch(getDisc(id))
@@ -68,7 +67,6 @@ export default function Disc() {
           <ShippingDetails />
         </div>
       </div>
-      {bagOpen && <Cart />}
     </div>
   )
 }
