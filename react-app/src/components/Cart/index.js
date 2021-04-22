@@ -32,7 +32,7 @@ export default function Cart() {
               {products.map((product, idx) => (
                 <BagProduct product={product} idx={idx} />
               ))}
-              <button onClick={() => history.push('/checkout')} className="checkout-btn">Continue to Checkout</button>
+              <button onClick={() => { history.push('/checkout'); dispatch(closeBag()) }} className="checkout-btn">Continue to Checkout</button>
             </div>
           )}
         </div>

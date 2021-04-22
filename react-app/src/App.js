@@ -14,6 +14,7 @@ import { authenticate } from "./services/auth";
 import BrowseBrands from "./components/BrowseBrands";
 import BrowseStabilities from "./components/BrowseStabilities";
 import Cart from './components/Cart';
+import Shipping from './components/Checkout/shipping';
 
 
 function App() {
@@ -73,6 +74,9 @@ function App() {
         </Route>
         <Route path="/checkout">
           <Checkout />
+        </Route>
+        <Route path="/shipping">
+          <Shipping />
         </Route>
       </Switch>
       {bagOpen && <Cart />}

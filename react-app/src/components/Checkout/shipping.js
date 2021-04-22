@@ -1,53 +1,24 @@
 import React, { useState, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router';
 import Select from 'react-select';
 import countryList from 'react-select-country-list';
 import './Checkout.css';
 import { states } from './states'
-
-export default function Checkout() {
+export default function Shipping() {
   const dispatch = useDispatch()
-  const history = useHistory()
-
   const products = useSelector((state) => state.bag.products)
   const amounts = useSelector((state) => state.bag.amounts)
-  const countries = useMemo(() => countryList().getData(), [])
 
+  const countries = useMemo(() => countryList().getData(), [])
   const [country, setCountry] = useState('');
   const [state, setState] = useState('');
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [address, setAddress] = useState('');
-  const [email, setEmail] = useState('');
-  const [city, setCity] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [zipCode, setZipCode] = useState('');
+
+  console.log(states)
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const checkoutInfo = {
-      country,
-      state,
-      firstName,
-      lastName,
-      address,
-      email,
-      city,
-      phoneNumber,
-      zipCode,
-    }
-    console.log(checkoutInfo)
-    setCountry('')
-    setState('')
-    setFirstName('')
-    setLastName('')
-    setAddress('')
-    setEmail('')
-    setCity('')
-    setPhoneNumber('')
-    setZipCode('');
-    // history.push('/shipping')
+    console.log(country.value, state.value)
   }
 
 
@@ -62,6 +33,9 @@ export default function Checkout() {
       gridRowStart: "4",
       gridColumn: "2 / span3",
       margin: "7px"
+      // width: state.selectProps.width,
+      // color: state.selectProps.menuColor,
+      // padding: 20,
     }),
     menu: (provided, state) => ({
       ...provided,
@@ -103,14 +77,14 @@ export default function Checkout() {
             <div className="breaker">━━━━━━━━━━━━━━━━ OR ━━━━━━━━━━━━━━━━</div>
             <button className="checkout-login-btn checkout-continue-btn">LOGIN</button>
             <div className="checkout-form-header">CONTACT INFORMATION</div>
-            <input value={email} onChange={(e) => { setEmail(e.target.value) }} type="text" className="form-email checkout-field" placeholder="Email" />
+            <input type="text" className="form-email checkout-field" placeholder="Email" />
             <div className="checkout-form-header">SHIPPING ADDRESS</div>
             {/* <div className="checkout-form-name"> */}
-            <input value={firstName} onChange={(e) => { setFirstName(e.target.value) }} className="form-fname checkout-field" type="text" placeholder="First Name" />
-            <input value={lastName} onChange={(e) => { setLastName(e.targetvalue) }} className="form-lname checkout-field" type="text" placeholder="Last Name" />
+            <input className="form-fname checkout-field" type="text" placeholder="First Name" />
+            <input className="form-lname checkout-field" type="text" placeholder="Last Name" />
             {/* </div> */}
-            <input value={address} onChange={(e) => { setAddress(e.target.value) }} className="form-address checkout-field" type="text" placeholder="Address" />
-            <input value={city} onChange={(e) => { setCity(e.target.value) }} className="form-city checkout-field" type="text" placeholder="City" />
+            <input className="form-address checkout-field" type="text" placeholder="Address" />
+            <input className="form-city checkout-field" type="text" placeholder="City" />
             <div className="checkout-form-location">
               <Select className="form-region"
                 value={country}
@@ -127,8 +101,8 @@ export default function Checkout() {
                 placeholder="State"
               />
             </div>
-            <input value={zipCode} onChange={(e) => { setZipCode(e.target.value) }} className="form-zip-code checkout-field" type="text" placeholder="ZIP code" />
-            <input value={phoneNumber} onChange={(e) => { setPhoneNumber(e.target.value) }} className="form-phone-number checkout-field" type="text" placeholder="Phone Number" />
+            <input className="form-zip-code checkout-field" type="text" placeholder="ZIP code" />
+            <input className="form-phone-number checkout-field" type="text" placeholder="Phone Number" />
             <button className="checkout-continue-btn" type="submit">CONTINUE TO SHIPPING</button>
           </form>
         </div>
