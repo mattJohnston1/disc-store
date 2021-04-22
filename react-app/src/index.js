@@ -8,7 +8,9 @@ import App from './App';
 
 const store = configureStore();
 
-window.store = store;
+if (process.env.NODE_ENV !== "production") {
+  window.store = store;
+}
 
 function Root() {
   return (
@@ -19,6 +21,7 @@ function Root() {
     </ReduxProvider>
   )
 }
+
 
 ReactDOM.render(
   <React.StrictMode>
