@@ -47,7 +47,7 @@ export default function Checkout() {
     setCity('')
     setPhoneNumber('')
     setZipCode('');
-    // history.push('/shipping')
+    history.push('/shipping')
   }
 
 
