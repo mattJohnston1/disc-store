@@ -11,6 +11,18 @@
 
 .sidebar-category {
   display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  user-select: none;
+  color: #1c1c1c;
+  padding: 5px 0px;
+  font-size: 15px;
+  max-width: 230px;
+}
+
+.sidebar-category-header {
+  display: flex;
   flex-direction: row;
   justify-content: space-between;
   cursor: pointer;
@@ -19,6 +31,14 @@
   padding: 5px 0px;
   font-size: 15px;
   max-width: 230px;
+}
+
+.category-list {
+  font-family: 'canela';
+}
+
+.category-filter-active {
+  font-weight: 700;
 }
 
 .browse-sidebar {

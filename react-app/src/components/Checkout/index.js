@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import Select from 'react-select';
@@ -23,6 +23,19 @@ export default function Checkout() {
   const [city, setCity] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [zipCode, setZipCode] = useState('');
+
+  const [total, setTotal] = useState(0.0)
+
+  const test = 0;
+
+  useEffect(() => {
+    products.forEach((product, idx) => {
+      let productTotal = product.price * amounts[idx]
+      const newTotal = productTotal + total;
+      setTotal(newTotal)
+    })
+    console.log(total)
+  }, [test])
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -159,7 +172,7 @@ export default function Checkout() {
 
         <div className="Subtotal sub">
           <div className="sub-header">Subtotal</div>
-          <div className="checkout-product-price">$300.00 USD</div>
+          <div className="checkout-product-price">${total} USD</div>
         </div>
         <div className="Shipping sub">
           <div className="sub-header">Shipping</div>
@@ -170,7 +183,7 @@ export default function Checkout() {
 
         <div className="Total">
           <div className="sub-header">Total</div>
-          <div className="checkout-total-price">$1009.35 USD</div>
+          <div className="checkout-total-price">${total} USD</div>
         </div>
         {/* {products.length > 3 && (<div className="extra-items">{products.length - 4} more item(s)</div>)} */}
 

@@ -1,27 +1,69 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Select from 'react-select';
-import countryList from 'react-select-country-list';
 import './Checkout.css';
 import './Shipping.css';
-import { states } from './states'
+
 export default function Shipping() {
   const dispatch = useDispatch()
   const products = useSelector((state) => state.bag.products)
   const amounts = useSelector((state) => state.bag.amounts)
 
-  const countries = useMemo(() => countryList().getData(), [])
-  const [country, setCountry] = useState('');
-  const [state, setState] = useState('');
-
-  console.log(states)
+  const [free, setFree] = useState(true)
+  const [ups, setUps] = useState(false)
 
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(country.value, state.value)
   }
 
+  const handleFree = (e) => {
+    if (ups) {
+      setUps(false)
+      setFree(!free)
+    } else {
+      setFree(!free)
+    }
+  }
+
+  const handleUps = (e) => {
+    if (free) {
+      setFree(false)
+      setUps(!ups)
+    } else {
+      setUps(!ups)
+    }
+  }
+  let upsCost = null;
+  useEffect(async () => {
+    // const res = await fetch('https://api.shipengine.com/v1/rates/estimate',
+    //   // {
+    //   //   method: 'POST',
+    //   //   headers: {
+    //   //     "API-Key": "TEST_iPmnup93FWjleO2PGg1XmKdle+tKRcYLU+SEJlUQnz0",
+    //   //     'Content-Type': 'application/json'
+    //   //   },
+    //   //   body: JSON.stringify({
+    //   //     "carrier_ids": [
+    //   //       "se-596789",
+    //   //       "se-596790",
+    //   //       "se-596791"
+    //   //     ],
+    //   //     "from_country_code": "US",
+    //   //     "from_postal_code": "78756",
+    //   //     "to_country_code": "US",
+    //   //     "to_postal_code": "91521",
+    //   //     "weight": {
+    //   //       "value": 17,
+    //   //       "unit": "pound"
+    //   //     }
+    //   //   }
+    //   //   )
+
+    //   // }
+    // )
+    // console.log("UPSPUSPUSUPSUUSP", res)
+    // const data = res.json();
+  })
 
   return (
     <div className="checkout">
@@ -30,17 +72,17 @@ export default function Shipping() {
         <div className="checkout-nav">Cart  ›  <b>Information</b>  ›  Shipping  ›  Payment</div>
 
         <div className="checkout-form">
-          <form className="form" onSubmit={handleSubmit}>
+          <form className="form shipping-form" onSubmit={handleSubmit}>
             <div className="checkout-form-header">CONTACT INFORMATION</div>
             <input type="text" className="form-email checkout-field" placeholder="Email" />
             <div className="checkout-form-header">SHIPPING METHOD</div>
-            <div className="checkout-form-location">
+            <div className="checkout-form-location shipping-info">
 
 
               <div className="form-shipping-free">
                 <div className="ship">
                   <div className="round check">
-                    <input type="checkbox" id="checkbox" />
+                    <input checked={free} onChange={handleFree} type="checkbox" id="checkbox" />
                     <label for="checkbox"></label>
                   </div>
                   <div className="shipping-type">Free Shipping</div>
@@ -51,16 +93,16 @@ export default function Shipping() {
 
               <div className="form-shipping-ups">
                 <div className="ship">
-                  <div className="round check">
-                    <input type="checkbox" id="checkbox" />
-                    <label for="checkbox"></label>
+                  <div className="round2 check">
+                    <input checked={ups} onChange={handleUps} type="checkbox" id="checkbox2" />
+                    <label for="checkbox2"></label>
                   </div>
                   <div className="shipping-type">UPS 2-day Shipping</div>
                 </div>
                 <div className="shipping-price">$6.78</div>
               </div>
             </div>
-            <button className="checkout-continue-btn" type="submit">CONTINUE TO SHIPPING</button>
+            <button className="checkout-continue-btn" type="submit">CONTINUE TO PAYMENT</button>
           </form>
         </div>
 
@@ -96,7 +138,7 @@ export default function Shipping() {
         </div>
         <div className="Shipping sub">
           <div className="sub-header">Shipping</div>
-          <div className="checkout-shipping-price">Calculated at next step</div>
+          <div className="checkout-shipping-price">{free ? "Free" : "$6.78"}</div>
         </div>
 
         <div className="totals-break"></div>

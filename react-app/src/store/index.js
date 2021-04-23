@@ -5,6 +5,7 @@ import disc from './disc';
 import bagState from './checkoutState';
 import currentImage from './currentImage';
 import bag from './bag';
+import filteredDiscs from './filteredDiscs';
 
 const rootReducer = combineReducers({
   discs,
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   bagState,
   currentImage,
   bag,
+  filteredDiscs,
 })
 
 const logger = require('redux-logger').default;
