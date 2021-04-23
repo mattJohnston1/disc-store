@@ -35,11 +35,19 @@ export default function Browse() {
   const [turnFilter, setTurnFilter] = useState([])
   const [fadeFilter, setFadeFilter] = useState([])
 
+  const [brandOpen, setBrandOpen] = useState(false)
+  const [typeOpen, setTypeOpen] = useState(false)
+  const [speedOpen, setSpeedOpen] = useState(false)
+  const [glideOpen, setGlideOpen] = useState(false)
+  const [turnOpen, setTurnOpen] = useState(false)
+  const [fadeOpen, setFadeOpen] = useState(false)
+
+
   useEffect(() => {
     if (type === undefined) {
       dispatch(getDiscs());
       dispatch(getFilterDiscs());
-    } else if (type === "stabilities") {
+    } else if (type === "types") {
       dispatch(getDiscs(false, true, id))
       dispatch(getFilterDiscs(false, true, id));
     } else if (type === "brands") {
@@ -111,11 +119,26 @@ export default function Browse() {
     }
   }
 
+  const handleCategoryClick = (e, category) => {
+    if (category === 'brand') {
+      setBrandOpen(!brandOpen)
+    } else if (category === 'type') {
+      setTypeOpen(!typeOpen)
+    } else if (category === 'speed') {
+      setSpeedOpen(!speedOpen)
+    } else if (category === 'glide') {
+      setGlideOpen(!glideOpen)
+    } else if (category === 'turn') {
+      setTurnOpen(!turnOpen)
+    } else if (category === 'fade') {
+      setFadeOpen(!fadeOpen)
+    }
+  }
+
   return (isLoaded && (
     <div className="browse">
       <div className="browse-top">
         <img className="browse-image" src="https://cdn.buttercms.com/UaR6hXbxSGi4pXwiAWEN" />
-        {/* <div className="centered-text">Innova</div> */}
       </div>
       <div className="browse-bottom">
         <div className="browse-sidebar">
@@ -123,75 +146,88 @@ export default function Browse() {
           <div className="sidebar-description">Pick from any of our selections from the most popular and the most widely used discs.</div>
           <div className="sidebar-selections">
             <div className="sidebar-category">
-              <div className="sidebar-category-header">
+              <div onClick={(e) => { handleCategoryClick(e, 'brand') }} className="sidebar-category-header">
                 <div className="category-name">Sort By</div>
                 <div className="category-arrow">˅</div>
               </div>
-              <div className="category-list">
-                <div onClick={(e) => { handleClick(e, 'brand', 1) }} className="category-filter">Discraft</div>
-                <div onClick={(e) => { handleClick(e, 'brand', 2) }} className="category-filter">Innova</div>
-                <div onClick={(e) => { handleClick(e, 'brand', 3) }} className="category-filter">Dynamic Discs</div>
-              </div>
+              {brandOpen && (
+                <div className="category-list">
+                  <div onClick={(e) => { handleClick(e, 'brand', 1) }} className="category-filter">Discraft</div>
+                  <div onClick={(e) => { handleClick(e, 'brand', 2) }} className="category-filter">Innova</div>
+                  <div onClick={(e) => { handleClick(e, 'brand', 3) }} className="category-filter">Dynamic Discs</div>
+                </div>
+              )
+              }
             </div>
             <div className="sidebar-category">
-              <div className="sidebar-category-header">
+              <div onClick={(e) => { handleCategoryClick(e, 'type') }} className="sidebar-category-header">
                 <div className="category-name">Disc Type</div>
                 <div className="category-arrow">˅</div>
               </div>
-              <div className="category-list">
-                <div onClick={(e) => { handleClick(e, 'type', 1) }} className="category-filter">Distance Driver</div>
-                <div onClick={(e) => { handleClick(e, 'type', 2) }} className="category-filter">Midrange</div>
-                <div onClick={(e) => { handleClick(e, 'type', 3) }} className="category-filter">Putter</div>
-              </div>
+              {typeOpen && (
+                <div className="category-list">
+                  <div onClick={(e) => { handleClick(e, 'type', 1) }} className="category-filter">Distance Driver</div>
+                  <div onClick={(e) => { handleClick(e, 'type', 2) }} className="category-filter">Midrange</div>
+                  <div onClick={(e) => { handleClick(e, 'type', 3) }} className="category-filter">Putter</div>
+                </div>
+              )}
             </div>
             <div className="sidebar-category">
-              <div className="sidebar-category-header">
+              <div onClick={(e) => { handleCategoryClick(e, 'speed') }} className="sidebar-category-header">
                 <div className="category-name">Speed</div>
                 <div className="category-arrow">˅</div>
               </div>
-              <div className="category-list">
-                <div onClick={(e) => { handleClick(e, 'speed', 4) }} className="category-filter">4</div>
-                <div onClick={(e) => { handleClick(e, 'speed', 5) }} className="category-filter">5</div>
-                <div onClick={(e) => { handleClick(e, 'speed', 7) }} className="category-filter">7</div>
-                <div onClick={(e) => { handleClick(e, 'speed', 9) }} className="category-filter">9</div>
-                <div onClick={(e) => { handleClick(e, 'speed', 12) }} className="category-filter">12</div>
-                <div onClick={(e) => { handleClick(e, 'speed', 13) }} className="category-filter">13</div>
-              </div>
+              {speedOpen && (
+                <div className="category-list">
+                  <div onClick={(e) => { handleClick(e, 'speed', 4) }} className="category-filter">4</div>
+                  <div onClick={(e) => { handleClick(e, 'speed', 5) }} className="category-filter">5</div>
+                  <div onClick={(e) => { handleClick(e, 'speed', 7) }} className="category-filter">7</div>
+                  <div onClick={(e) => { handleClick(e, 'speed', 9) }} className="category-filter">9</div>
+                  <div onClick={(e) => { handleClick(e, 'speed', 12) }} className="category-filter">12</div>
+                  <div onClick={(e) => { handleClick(e, 'speed', 13) }} className="category-filter">13</div>
+                </div>
+              )}
             </div>
             <div className="sidebar-category">
-              <div className="sidebar-category-header">
+              <div onClick={(e) => { handleCategoryClick(e, 'glide') }} className="sidebar-category-header">
                 <div className="category-name">Glide</div>
                 <div className="category-arrow">˅</div>
               </div>
-              <div className="category-list">
-                <div onClick={(e) => { handleClick(e, 'glide', 3) }} className="category-filter">3</div>
-                <div onClick={(e) => { handleClick(e, 'glide', 4) }} className="category-filter">4</div>
-                <div onClick={(e) => { handleClick(e, 'glide', 5) }} className="category-filter">5</div>
-                <div onClick={(e) => { handleClick(e, 'glide', 6) }} className="category-filter">6</div>
-              </div>
+              {glideOpen && (
+                <div className="category-list">
+                  <div onClick={(e) => { handleClick(e, 'glide', 3) }} className="category-filter">3</div>
+                  <div onClick={(e) => { handleClick(e, 'glide', 4) }} className="category-filter">4</div>
+                  <div onClick={(e) => { handleClick(e, 'glide', 5) }} className="category-filter">5</div>
+                  <div onClick={(e) => { handleClick(e, 'glide', 6) }} className="category-filter">6</div>
+                </div>
+              )}
             </div>
             <div className="sidebar-category">
-              <div className="sidebar-category-header">
+              <div onClick={(e) => { handleCategoryClick(e, 'turn') }} className="sidebar-category-header">
                 <div className="category-name">Turn</div>
                 <div className="category-arrow">˅</div>
               </div>
-              <div className="category-list">
-                <div onClick={(e) => { handleClick(e, 'turn', 0) }} className="category-filter">0</div>
-                <div onClick={(e) => { handleClick(e, 'turn', -1) }} className="category-filter">-1</div>
-                <div onClick={(e) => { handleClick(e, 'turn', -2) }} className="category-filter">-2</div>
-                <div onClick={(e) => { handleClick(e, 'turn', -3) }} className="category-filter">-3</div>
-              </div>
+              {turnOpen && (
+                <div className="category-list">
+                  <div onClick={(e) => { handleClick(e, 'turn', 0) }} className="category-filter">0</div>
+                  <div onClick={(e) => { handleClick(e, 'turn', -1) }} className="category-filter">-1</div>
+                  <div onClick={(e) => { handleClick(e, 'turn', -2) }} className="category-filter">-2</div>
+                  <div onClick={(e) => { handleClick(e, 'turn', -3) }} className="category-filter">-3</div>
+                </div>
+              )}
             </div>
             <div className="sidebar-category">
-              <div className="sidebar-category-header">
+              <div onClick={(e) => { handleCategoryClick(e, 'fade') }} className="sidebar-category-header">
                 <div className="category-name">Fade</div>
                 <div className="category-arrow">˅</div>
               </div>
-              <div className="category-list">
-                <div onClick={(e) => { handleClick(e, 'fade', 2) }} className="category-filter">2</div>
-                <div onClick={(e) => { handleClick(e, 'fade', 3) }} className="category-filter">3</div>
-                <div onClick={(e) => { handleClick(e, 'fade', 4) }} className="category-filter">4</div>
-              </div>
+              {fadeOpen && (
+                <div className="category-list">
+                  <div onClick={(e) => { handleClick(e, 'fade', 2) }} className="category-filter">2</div>
+                  <div onClick={(e) => { handleClick(e, 'fade', 3) }} className="category-filter">3</div>
+                  <div onClick={(e) => { handleClick(e, 'fade', 4) }} className="category-filter">4</div>
+                </div>
+              )}
             </div>
             {/* <div className="sidebar-category">
               <div className="category-name">Brand</div>
