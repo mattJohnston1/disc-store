@@ -162,7 +162,7 @@ export default function Shipping() {
 
         <div className="Subtotal sub">
           <div className="sub-header">Subtotal</div>
-          <div className="checkout-product-price">${total} USD</div>
+          <div className="checkout-product-price">${total.toFixed(2)} USD</div>
         </div>
         <div className="Shipping sub">
           <div className="sub-header">Shipping</div>
@@ -174,10 +174,10 @@ export default function Shipping() {
         <div className="Total">
           <div className="sub-header">Total</div>
           {free && (
-            <div className="checkout-total-price">${total} USD</div>
+            <div className="checkout-total-price">${total.toFixed(2)} USD</div>
           )}
           {ups && (
-            <div className="checkout-total-price">${total + 6.78} USD</div>
+            <div className="checkout-total-price">${(total + 6.78).toFixed(2)} USD</div>
           )}
         </div>
       </div>

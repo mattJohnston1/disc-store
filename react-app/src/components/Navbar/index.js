@@ -1,15 +1,30 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 import { openBag } from '../../store/checkoutState';
 import './Navbar.css';
 import { useDispatch } from 'react-redux';
 import { script } from './script'
+import { authenticate } from '../../services/auth';
 
 const NavBar = ({ setAuthenticated }) => {
   const dispatch = useDispatch();
+
+  const [authorized, setAuthorized] = useState(false);
+
   useEffect(() => {
     script()
+  })
+  useEffect(() => {
+    const auth = async () => {
+      const res = await authenticate()
+      if (res.email === undefined) {
+        setAuthorized(false)
+      } else {
+        setAuthorized(true)
+      }
+    }
+    const user = auth()
   })
   return (
     <div className="navbar" id="navbar">
@@ -39,7 +54,9 @@ const NavBar = ({ setAuthenticated }) => {
             <NavLink className="login" to="/login" exact={true}>
               Login
             </NavLink>
-            {/* <LogoutButton /> */}
+            {authorized && (
+              <LogoutButton setAuthenticated={setAuthenticated} />
+            )}
           </div>
           <div className="view-cart-btn" onClick={() => { dispatch(openBag()) }}>
             <i class="fas fa-shopping-cart"></i> View Cart

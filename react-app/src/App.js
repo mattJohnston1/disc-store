@@ -58,7 +58,7 @@ function App() {
           <User />
         </ProtectedRoute>
         <Route path="/" exact={true} authenticated={authenticated}>
-          <h1>My Home Page</h1>
+          <Browse />
         </Route>
         <Route path="/browse" exact={true}>
           <Browse />
