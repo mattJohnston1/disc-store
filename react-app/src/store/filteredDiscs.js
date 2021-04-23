@@ -26,8 +26,10 @@ export const filterDiscs = (discs, brandFilter, typeFilter, speedFilter, glideFi
       filtered = [...filtered, ...newFilterArr]
       // console.log("NEW FILTER SPEED", newFilterArr)
     })
+    dispatch(setFilteredDiscs(filtered))
+  } else {
+    dispatch(setFilteredDiscs(filteredCopy))
   }
-  dispatch(setFilteredDiscs(filtered))
 }
 
 export const getFilterDiscs = (brand, type, id) => async (dispatch) => {

@@ -63,8 +63,11 @@ export default function Browse() {
     if (filter === 'speed') {
       if (speedFilter.includes(value)) {
         setSpeedFilter(speedFilter.filter((speed) => speed !== value))
+        e.target.className = e.target.className.split(" ")[0]
       } else {
         setSpeedFilter((prev) => [...prev, value])
+        e.target.className += ' category-filter-active';
+        console.log(e)
       }
     }
   }
