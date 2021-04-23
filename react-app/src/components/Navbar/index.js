@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 import { openBag } from '../../store/checkoutState';
 import './Navbar.css';
 import { useDispatch } from 'react-redux';
+import { script } from './script'
 
 const NavBar = ({ setAuthenticated }) => {
   const dispatch = useDispatch();
+  useEffect(() => {
+    script()
+  })
   return (
-    <div className="navbar">
+    <div className="navbar" id="navbar">
 
 
       <div className="navbar-top">
@@ -20,6 +24,7 @@ const NavBar = ({ setAuthenticated }) => {
           {/* <img className="logo-img" src="https://cdn11.bigcommerce.com/s-9srn18to/images/stencil/270x70/alogo_black1000_1455102483__18572_copy270x70_1534906618.original.png" /> */}
           {/* <img className="logo-img" src="https://i.imgur.com/afqddMp.png" /> */}
           <img className="logo-img" src="https://i.imgur.com/yeD2Aaq.png" />
+          {/* <img className="logo-img" src="https://i.imgur.com/HNq2nDS.png" /> */}
         </div>
         <div className="navbar-top-controls">
           {/* <div className="navbar-search-bar">
@@ -44,7 +49,7 @@ const NavBar = ({ setAuthenticated }) => {
       </div>
 
 
-      <div className="navbar-bottom">
+      <div className="navbar-bottom" id="navbar-bottom">
         <nav>
           <ul className="nav-list">
             {/* <li>
