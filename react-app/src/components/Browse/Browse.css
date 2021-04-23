@@ -83,6 +83,14 @@
   background-size: cover;
   background-position: ; */
 }
+.browse-top-small {
+  height: 70%;
+  /* background-color: blue; */
+  /* background-position: top; */
+  /* background-image: url(https://cdn.buttercms.com/UaR6hXbxSGi4pXwiAWEN);
+  background-size: cover;
+  background-position: ; */
+}
 
 .browse-image {
   height: 100%;
@@ -102,6 +110,11 @@
 }
 
 .browse-discs {
-  min-height: 1000px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  min-height: 500px;
   margin-top: 25px;
 }

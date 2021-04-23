@@ -137,9 +137,17 @@ export default function Browse() {
 
   return (isLoaded && (
     <div className="browse">
-      <div className="browse-top">
-        <img className="browse-image" src="https://cdn.buttercms.com/UaR6hXbxSGi4pXwiAWEN" />
-      </div>
+      { type === undefined && (
+        <div className="browse-top-small">
+          <img className="browse-image" src="https://cdn.buttercms.com/UaR6hXbxSGi4pXwiAWEN" />
+        </div>
+      )
+      }
+      {type !== undefined && (
+        <div className="browse-top">
+          <img className="browse-image" src="https://cdn.buttercms.com/UaR6hXbxSGi4pXwiAWEN" />
+        </div>
+      )}
       <div className="browse-bottom">
         <div className="browse-sidebar">
           <div className="sidebar-title">Disc General</div>
@@ -179,10 +187,13 @@ export default function Browse() {
               </div>
               {speedOpen && (
                 <div className="category-list">
+                  <div onClick={(e) => { handleClick(e, 'speed', 2) }} className="category-filter">2</div>
+                  <div onClick={(e) => { handleClick(e, 'speed', 3) }} className="category-filter">3</div>
                   <div onClick={(e) => { handleClick(e, 'speed', 4) }} className="category-filter">4</div>
                   <div onClick={(e) => { handleClick(e, 'speed', 5) }} className="category-filter">5</div>
-                  <div onClick={(e) => { handleClick(e, 'speed', 7) }} className="category-filter">7</div>
                   <div onClick={(e) => { handleClick(e, 'speed', 9) }} className="category-filter">9</div>
+                  <div onClick={(e) => { handleClick(e, 'speed', 10) }} className="category-filter">10</div>
+                  <div onClick={(e) => { handleClick(e, 'speed', 11) }} className="category-filter">11</div>
                   <div onClick={(e) => { handleClick(e, 'speed', 12) }} className="category-filter">12</div>
                   <div onClick={(e) => { handleClick(e, 'speed', 13) }} className="category-filter">13</div>
                 </div>
@@ -195,6 +206,8 @@ export default function Browse() {
               </div>
               {glideOpen && (
                 <div className="category-list">
+                  <div onClick={(e) => { handleClick(e, 'glide', 1) }} className="category-filter">1</div>
+                  <div onClick={(e) => { handleClick(e, 'glide', 2) }} className="category-filter">2</div>
                   <div onClick={(e) => { handleClick(e, 'glide', 3) }} className="category-filter">3</div>
                   <div onClick={(e) => { handleClick(e, 'glide', 4) }} className="category-filter">4</div>
                   <div onClick={(e) => { handleClick(e, 'glide', 5) }} className="category-filter">5</div>
@@ -223,6 +236,8 @@ export default function Browse() {
               </div>
               {fadeOpen && (
                 <div className="category-list">
+                  <div onClick={(e) => { handleClick(e, 'fade', 0) }} className="category-filter">0</div>
+                  <div onClick={(e) => { handleClick(e, 'fade', 1) }} className="category-filter">1</div>
                   <div onClick={(e) => { handleClick(e, 'fade', 2) }} className="category-filter">2</div>
                   <div onClick={(e) => { handleClick(e, 'fade', 3) }} className="category-filter">3</div>
                   <div onClick={(e) => { handleClick(e, 'fade', 4) }} className="category-filter">4</div>

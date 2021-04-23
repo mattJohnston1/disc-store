@@ -172,7 +172,7 @@ export default function Checkout() {
 
         <div className="Subtotal sub">
           <div className="sub-header">Subtotal</div>
-          <div className="checkout-product-price">${total} USD</div>
+          <div className="checkout-product-price">${total.toFixed(2)} USD</div>
         </div>
         <div className="Shipping sub">
           <div className="sub-header">Shipping</div>
@@ -183,7 +183,7 @@ export default function Checkout() {
 
         <div className="Total">
           <div className="sub-header">Total</div>
-          <div className="checkout-total-price">${total} USD</div>
+          <div className="checkout-total-price">${total.toFixed(2)} USD</div>
         </div>
         {/* {products.length > 3 && (<div className="extra-items">{products.length - 4} more item(s)</div>)} */}
 
