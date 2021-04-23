@@ -7,6 +7,7 @@ export default function Shipping() {
   const dispatch = useDispatch()
   const products = useSelector((state) => state.bag.products)
   const amounts = useSelector((state) => state.bag.amounts)
+  const total = useSelector((state) => state.bag.total)
 
   const [free, setFree] = useState(true)
   const [ups, setUps] = useState(false)
@@ -69,7 +70,7 @@ export default function Shipping() {
     <div className="checkout">
       <div className="checkout-form">
 
-        <div className="checkout-nav">Cart  ›  <b>Information</b>  ›  Shipping  ›  Payment</div>
+        <div className="checkout-nav">Cart  ›  Information  ›  <b>Shipping</b>  ›  Payment</div>
 
         <div className="checkout-form">
           <form className="form shipping-form" onSubmit={handleSubmit}>
@@ -134,7 +135,7 @@ export default function Shipping() {
 
         <div className="Subtotal sub">
           <div className="sub-header">Subtotal</div>
-          <div className="checkout-product-price">$300.00 USD</div>
+          <div className="checkout-product-price">${total} USD</div>
         </div>
         <div className="Shipping sub">
           <div className="sub-header">Shipping</div>
@@ -145,7 +146,12 @@ export default function Shipping() {
 
         <div className="Total">
           <div className="sub-header">Total</div>
-          <div className="checkout-total-price">$1009.35 USD</div>
+          {free && (
+            <div className="checkout-total-price">${total} USD</div>
+          )}
+          {ups && (
+            <div className="checkout-total-price">${total + 6.78} USD</div>
+          )}
         </div>
         {/* {products.length > 3 && (<div className="extra-items">{products.length - 4} more item(s)</div>)} */}
 

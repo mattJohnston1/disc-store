@@ -42,7 +42,7 @@ Array.prototype.discIndexOf = function (incomingDisc) {
   return null;
 }
 //add a delete function and an add to the amoounts based off an index
-const initialState = { products: [], amounts: [] }
+const initialState = { products: [], amounts: [], total: 0.0 }
 
 function reducer(state = initialState, action) {
   let newState;
@@ -52,11 +52,19 @@ function reducer(state = initialState, action) {
       newState = { ...state };
       idx = action.idx;
       newState.amounts[idx] += 1;
+      newState.total = 0.0
+      newState.products.forEach((product, idx) => {
+        newState.total += product.price * newState.amounts[idx]
+      })
       return newState;
     case REDUCE_DISC_BY_INDEX:
       newState = { ...state };
       idx = action.idx;
       newState.amounts[idx] -= 1;
+      newState.total = 0.0
+      newState.products.forEach((product, idx) => {
+        newState.total += product.price * newState.amounts[idx]
+      })
       return newState;
     case ADD_DISC:
       newState = { ...state };
@@ -67,11 +75,19 @@ function reducer(state = initialState, action) {
         let idx = newState.products.discIndexOf(action.disc)
         newState.amounts[idx] += 1;
       }
+      newState.total = 0.0
+      newState.products.forEach((product, idx) => {
+        newState.total += product.price * newState.amounts[idx]
+      })
       return newState;
     case REMOVE_BY_INDEX:
       newState = { ...state };
       newState.products.splice(action.idx, 1);
       newState.amounts.splice(action.idx, 1);
+      newState.total = 0.0
+      newState.products.forEach((product, idx) => {
+        newState.total += product.price * newState.amounts[idx]
+      })
       return newState;
     default:
       return state;

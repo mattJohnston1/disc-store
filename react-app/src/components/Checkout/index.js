@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import Select from 'react-select';
 import countryList from 'react-select-country-list';
+import { saveInfo } from '../../store/checkoutInfo';
 import './Checkout.css';
 import { states } from './states'
 
@@ -13,6 +14,7 @@ export default function Checkout() {
   const products = useSelector((state) => state.bag.products)
   const amounts = useSelector((state) => state.bag.amounts)
   const countries = useMemo(() => countryList().getData(), [])
+  const total = useSelector((state) => state.bag.total);
 
   const [country, setCountry] = useState('');
   const [state, setState] = useState('');
@@ -23,19 +25,6 @@ export default function Checkout() {
   const [city, setCity] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [zipCode, setZipCode] = useState('');
-
-  const [total, setTotal] = useState(0.0)
-
-  const test = 0;
-
-  useEffect(() => {
-    products.forEach((product, idx) => {
-      let productTotal = product.price * amounts[idx]
-      const newTotal = productTotal + total;
-      setTotal(newTotal)
-    })
-    console.log(total)
-  }, [test])
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -50,7 +39,7 @@ export default function Checkout() {
       phoneNumber,
       zipCode,
     }
-    console.log(checkoutInfo)
+    dispatch(saveInfo(checkoutInfo))
     setCountry('')
     setState('')
     setFirstName('')
@@ -185,7 +174,6 @@ export default function Checkout() {
           <div className="sub-header">Total</div>
           <div className="checkout-total-price">${total.toFixed(2)} USD</div>
         </div>
-        {/* {products.length > 3 && (<div className="extra-items">{products.length - 4} more item(s)</div>)} */}
 
       </div>
     </div >
