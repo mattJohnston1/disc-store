@@ -21,17 +21,27 @@ export const filterDiscs = (discs, brandFilter, typeFilter, speedFilter, glideFi
           return false;
         }
       })
-      // console.log("1", newFilterArr)
       filtered = [...filtered, ...newFilterArr]
     })
     discsCopy = [...filtered]
-    // filtered = []
-    // dispatch(setFilteredDiscs(filtered))
-
   }
+
+  if (typeFilter.length) {
+    filtered = []
+    typeFilter.forEach((typeId) => {
+      let newFilterArr = discsCopy.filter((disc) => {
+        if (disc.type_id === typeId) {
+          return true;
+        } else {
+          return false;
+        }
+      })
+      filtered = [...filtered, ...newFilterArr]
+    })
+    discsCopy = [...filtered]
+  }
+
   if (speedFilter.length) {
-    console.log("discsCopy::", discsCopy)
-    console.log("filtered::", filtered)
     filtered = []
     speedFilter.forEach((speed) => {
       let newFilterArr = discsCopy.filter((disc) => {
@@ -43,61 +53,57 @@ export const filterDiscs = (discs, brandFilter, typeFilter, speedFilter, glideFi
       })
       filtered = [...filtered, ...newFilterArr]
     })
-    // dispatch(setFilteredDiscs(filtered))
+    discsCopy = [...filtered]
   }
-  // else if (typeFilter.length) {
-  //   typeFilter.forEach((typeId) => {
-  //     let newFilterArr = discsCopy.filter((disc) => {
-  //       if (disc.type_id === typeId) {
-  //         return true;
-  //       } else {
-  //         return false;
-  //       }
-  //     })
-  //     filtered = [...filtered, ...newFilterArr]
-  //   })
-  //   dispatch(setFilteredDiscs(filtered))
-  // } else if (glideFilter.length) {
-  //   glideFilter.forEach((glide) => {
-  //     let newFilterArr = discsCopy.filter((disc) => {
-  //       if (disc.glide === glide) {
-  //         return true;
-  //       } else {
-  //         return false;
-  //       }
-  //     })
-  //     filtered = [...filtered, ...newFilterArr]
-  //   })
-  //   dispatch(setFilteredDiscs(filtered))
-  // } else if (turnFilter.length) {
-  //   turnFilter.forEach((turn) => {
-  //     let newFilterArr = discsCopy.filter((disc) => {
-  //       if (disc.turn === turn) {
-  //         return true;
-  //       } else {
-  //         return false;
-  //       }
-  //     })
-  //     filtered = [...filtered, ...newFilterArr]
-  //   })
-  //   dispatch(setFilteredDiscs(filtered))
-  // } else if (fadeFilter.length) {
-  //   fadeFilter.forEach((fade) => {
-  //     let newFilterArr = discsCopy.filter((disc) => {
-  //       if (disc.fade === fade) {
-  //         return true;
-  //       } else {
-  //         return false;
-  //       }
-  //     })
-  //     filtered = [...filtered, ...newFilterArr]
-  //   })
-  //   dispatch(setFilteredDiscs(filtered))
-  // }
-  // else {
-  //   dispatch(setFilteredDiscs(unfiltered))
-  // }
-  dispatch(setFilteredDiscs(filtered))
+
+  if (glideFilter.length) {
+    filtered = []
+    glideFilter.forEach((glide) => {
+      let newFilterArr = discsCopy.filter((disc) => {
+        if (disc.glide === glide) {
+          return true;
+        } else {
+          return false;
+        }
+      })
+      filtered = [...filtered, ...newFilterArr]
+    })
+    discsCopy = [...filtered]
+  }
+  if (turnFilter.length) {
+    filtered = []
+    turnFilter.forEach((turn) => {
+      let newFilterArr = discsCopy.filter((disc) => {
+        if (disc.turn === turn) {
+          return true;
+        } else {
+          return false;
+        }
+      })
+      filtered = [...filtered, ...newFilterArr]
+    })
+  }
+  if (fadeFilter.length) {
+    filtered = []
+    fadeFilter.forEach((fade) => {
+      let newFilterArr = discsCopy.filter((disc) => {
+        if (disc.fade === fade) {
+          return true;
+        } else {
+          return false;
+        }
+      })
+      filtered = [...filtered, ...newFilterArr]
+    })
+    discsCopy = [...filtered]
+  }
+
+  if (!brandFilter.length && !typeFilter.length && !speedFilter.length && !glideFilter.length && !turnFilter.length && !fadeFilter.length) {
+    dispatch(setFilteredDiscs(discs))
+  } else {
+    dispatch(setFilteredDiscs(filtered))
+  }
+
 }
 
 export const getFilterDiscs = (brand, type, id) => async (dispatch) => {
