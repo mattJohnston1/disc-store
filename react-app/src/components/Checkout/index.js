@@ -110,6 +110,10 @@ export default function Checkout() {
       padding: 5,
     }),
   }
+  const handleLogin = (e) => {
+    e.preventDefault();
+    history.push('/login')
+  }
 
   return (
     <div className="checkout">
@@ -135,7 +139,7 @@ export default function Checkout() {
         <div className="checkout-form">
           <form className="form" onSubmit={handleSubmit}>
             <div className="breaker">━━━━━━━━━━━━━━━━ OR ━━━━━━━━━━━━━━━━</div>
-            <button className="checkout-login-btn checkout-continue-btn">LOGIN</button>
+            <button onClick={handleLogin} className="checkout-login-btn checkout-continue-btn">LOGIN</button>
             <div className="checkout-form-header">CONTACT INFORMATION</div>
             <input value={email} onChange={(e) => { setEmail(e.target.value) }} type="text" className="form-email checkout-field" placeholder="Email" />
             <div className="checkout-form-header">SHIPPING ADDRESS</div>
