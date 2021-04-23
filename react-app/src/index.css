@@ -3,3 +3,7 @@ body {
   margin: 0px;
   user-select: none;
 }
+
+html {
+  overflow-y: scroll;
+}

@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import { signUp } from '../../services/auth';
 
-const SignUpForm = ({authenticated, setAuthenticated}) => {
+const SignUpForm = ({ authenticated, setAuthenticated }) => {
+  const history = useHistory()
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -39,46 +40,69 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
   }
 
   return (
-    <form onSubmit={onSignUp}>
-      <div>
-        <label>User Name</label>
-        <input
-          type="text"
-          name="username"
-          onChange={updateUsername}
-          value={username}
-        ></input>
+    <div className="login-page">
+      <div className="login-header">
+        Sign up
       </div>
-      <div>
-        <label>Email</label>
-        <input
-          type="text"
-          name="email"
-          onChange={updateEmail}
-          value={email}
-        ></input>
+      <div className="login-bottom">
+
+        <form onSubmit={onSignUp}>
+          <div>
+            <div className="pass-label">Username:</div>
+            <input
+              type="text"
+              name="username"
+              className="login-input"
+              onChange={updateUsername}
+              value={username}
+            ></input>
+          </div>
+          <div>
+            <div className="pass-label">Email Address:</div>
+            <input
+              type="text"
+              name="email"
+              className="login-input"
+              onChange={updateEmail}
+              value={email}
+            ></input>
+          </div>
+          <div>
+            <div className="pass-label">Password:</div>
+            <input
+              type="password"
+              name="password"
+              className="login-input"
+              onChange={updatePassword}
+              value={password}
+            ></input>
+          </div>
+          <div>
+            <div className="pass-label">Repeat Password:</div>
+            <input
+              type="password"
+              name="repeat_password"
+              className="login-input"
+              onChange={updateRepeatPassword}
+              value={repeatPassword}
+              required={true}
+            ></input>
+          </div>
+          <button className="sign-in-button" type="submit">Sign Up</button>
+        </form>
+        <div className="other-login">
+          <div className="other-header">Returning Customer?</div>
+          <div className="other-text-header">Login with your account and you'll be able to</div>
+          <ul className="other-text-list">
+            <li className="other-text-bullet">Check out faster</li>
+            <li className="other-text-bullet">Save your shipping addresses</li>
+            <li className="other-text-bullet">Access your order history</li>
+            <li className="other-text-bullet">Save items to your wish list</li>
+          </ul>
+          <button onClick={() => history.push('/login')} className="sign-in-button">Login</button>
+        </div>
       </div>
-      <div>
-        <label>Password</label>
-        <input
-          type="password"
-          name="password"
-          onChange={updatePassword}
-          value={password}
-        ></input>
-      </div>
-      <div>
-        <label>Repeat Password</label>
-        <input
-          type="password"
-          name="repeat_password"
-          onChange={updateRepeatPassword}
-          value={repeatPassword}
-          required={true}
-        ></input>
-      </div>
-      <button type="submit">Sign Up</button>
-    </form>
+    </div>
   );
 };
 

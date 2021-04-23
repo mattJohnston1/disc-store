@@ -4,14 +4,12 @@ from app.models import db, Type
 def seed_types():
 
     type1 = Type(type="Distance Driver")
-    type2 = Type(type="Fairway Driver")
-    type3 = Type(type="Midrange")
-    type4 = Type(type="Putter")
+    type2 = Type(type="Midrange")
+    type3 = Type(type="Putter")
 
     db.session.add(type1)
     db.session.add(type2)
     db.session.add(type3)
-    db.session.add(type4)
 
     db.session.commit()
 

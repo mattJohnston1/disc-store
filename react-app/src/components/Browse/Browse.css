@@ -11,6 +11,18 @@
 
 .sidebar-category {
   display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  user-select: none;
+  color: #1c1c1c;
+  padding: 5px 0px;
+  font-size: 15px;
+  max-width: 230px;
+}
+
+.sidebar-category-header {
+  display: flex;
   flex-direction: row;
   justify-content: space-between;
   cursor: pointer;
@@ -19,6 +31,19 @@
   padding: 5px 0px;
   font-size: 15px;
   max-width: 230px;
+}
+
+.category-list {
+  font-family: 'canela';
+  padding-left: 8px;
+}
+
+.category-filter-active {
+  font-weight: 700;
+}
+
+.category-filter {
+  padding: 4px 0px;
 }
 
 .browse-sidebar {
@@ -62,6 +87,14 @@
   background-size: cover;
   background-position: ; */
 }
+.browse-top-small {
+  height: 70%;
+  /* background-color: blue; */
+  /* background-position: top; */
+  /* background-image: url(https://cdn.buttercms.com/UaR6hXbxSGi4pXwiAWEN);
+  background-size: cover;
+  background-position: ; */
+}
 
 .browse-image {
   height: 100%;
@@ -78,4 +111,14 @@
   color: white;
   font-family: 'canela';
   font-size: 35px;
+}
+
+.browse-discs {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  min-height: 500px;
+  margin-top: 25px;
 }
