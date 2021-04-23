@@ -15,6 +15,7 @@ export default function Checkout() {
   const amounts = useSelector((state) => state.bag.amounts)
   const countries = useMemo(() => countryList().getData(), [])
   const total = useSelector((state) => state.bag.total);
+  const checkoutInfo = useSelector((state) => state.checkoutInfo)
 
   const [country, setCountry] = useState('');
   const [state, setState] = useState('');
@@ -26,8 +27,34 @@ export default function Checkout() {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [zipCode, setZipCode] = useState('');
 
+  // const [errors, setErrors] = useState([])
+
+  // const validateErrors = () => {
+  //   if (country === '') {
+  //     setErrors((prev) => [...prev, "Please select a country"])
+  //   }
+  //   if (state === '') {
+  //     setErrors((prev) => [...prev, "Please select a state"])
+  //   }
+  // }
+
+  useEffect(() => {
+    if (checkoutInfo) {
+      setCountry(checkoutInfo.country)
+      setState(checkoutInfo.state)
+      setFirstName(checkoutInfo.firstName)
+      setLastName(checkoutInfo.lastName)
+      setAddress(checkoutInfo.address)
+      setEmail(checkoutInfo.email)
+      setCity(checkoutInfo.city)
+      setPhoneNumber(checkoutInfo.phoneNumber)
+      setZipCode(checkoutInfo.zipCode)
+    }
+  }, [checkoutInfo])
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    // validateErrors()
     const checkoutInfo = {
       country,
       state,
@@ -39,6 +66,7 @@ export default function Checkout() {
       phoneNumber,
       zipCode,
     }
+    // if (errors.length === 0) {
     dispatch(saveInfo(checkoutInfo))
     setCountry('')
     setState('')
@@ -50,6 +78,7 @@ export default function Checkout() {
     setPhoneNumber('')
     setZipCode('');
     history.push('/shipping')
+    // }
   }
 
 
@@ -84,6 +113,9 @@ export default function Checkout() {
 
   return (
     <div className="checkout">
+      {/* <div className="ERRORS">{errors.map((error) => (
+        <div>{error}</div>
+      ))}</div> */}
       <div className="checkout-form">
         <div className="checkout-nav">Cart  ›  <b>Information</b>  ›  Shipping  ›  Payment</div>
         <div className="checkout-login">
@@ -109,7 +141,7 @@ export default function Checkout() {
             <div className="checkout-form-header">SHIPPING ADDRESS</div>
             {/* <div className="checkout-form-name"> */}
             <input value={firstName} onChange={(e) => { setFirstName(e.target.value) }} className="form-fname checkout-field" type="text" placeholder="First Name" />
-            <input value={lastName} onChange={(e) => { setLastName(e.targetvalue) }} className="form-lname checkout-field" type="text" placeholder="Last Name" />
+            <input value={lastName} onChange={(e) => { setLastName(e.target.value) }} className="form-lname checkout-field" type="text" placeholder="Last Name" />
             {/* </div> */}
             <input value={address} onChange={(e) => { setAddress(e.target.value) }} className="form-address checkout-field" type="text" placeholder="Address" />
             <input value={city} onChange={(e) => { setCity(e.target.value) }} className="form-city checkout-field" type="text" placeholder="City" />

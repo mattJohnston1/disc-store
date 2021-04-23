@@ -1,13 +1,16 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Redirect, useHistory } from 'react-router-dom';
 import './Checkout.css';
 import './Shipping.css';
 
 export default function Shipping() {
   const dispatch = useDispatch()
+  const history = useHistory()
   const products = useSelector((state) => state.bag.products)
   const amounts = useSelector((state) => state.bag.amounts)
   const total = useSelector((state) => state.bag.total)
+  const checkoutInfo = useSelector((state) => state.checkoutInfo)
 
   const [free, setFree] = useState(true)
   const [ups, setUps] = useState(false)
@@ -22,7 +25,7 @@ export default function Shipping() {
       setUps(false)
       setFree(!free)
     } else {
-      setFree(!free)
+      // setFree(!free)
     }
   }
 
@@ -31,7 +34,7 @@ export default function Shipping() {
       setFree(false)
       setUps(!ups)
     } else {
-      setUps(!ups)
+      // setUps(!ups)
     }
   }
   let upsCost = null;
@@ -66,6 +69,9 @@ export default function Shipping() {
     // const data = res.json();
   })
 
+  const handlePay = () => {
+
+  }
   return (
     <div className="checkout">
       <div className="checkout-form">
@@ -75,7 +81,28 @@ export default function Shipping() {
         <div className="checkout-form">
           <form className="form shipping-form" onSubmit={handleSubmit}>
             <div className="checkout-form-header">CONTACT INFORMATION</div>
-            <input type="text" className="form-email checkout-field" placeholder="Email" />
+            <div className="user-details">
+              <div className="details-list">
+                <div className="details-header">
+                  <div className="details-name">{checkoutInfo.firstName} {checkoutInfo.lastName}</div>
+                  <div onClick={() => history.push('/checkout')} className="details-header-edit">edit</div>
+                </div>
+                {checkoutInfo && (
+                  <div className="new-detail">
+                    <div className="detail-title">Address</div>
+                    <div className="detail-detail">{checkoutInfo.address}, {checkoutInfo.city}, {checkoutInfo.state.value}, {checkoutInfo.zipCode}, {checkoutInfo.country.label}</div>
+                  </div>
+                )}
+                <div className="new-detail">
+                  <div className="detail-title">Email</div>
+                  <div className="detail-detail">{checkoutInfo.email}</div>
+                </div>
+                <div className="new-detail">
+                  <div className="detail-title">Phone Number</div>
+                  <div className="detail-detail">{checkoutInfo.phoneNumber}</div>
+                </div>
+              </div>
+            </div>
             <div className="checkout-form-header">SHIPPING METHOD</div>
             <div className="checkout-form-location shipping-info">
 
@@ -103,7 +130,7 @@ export default function Shipping() {
                 <div className="shipping-price">$6.78</div>
               </div>
             </div>
-            <button className="checkout-continue-btn" type="submit">CONTINUE TO PAYMENT</button>
+            <a href="/browse" className="checkout-continue-btn" type="submit">CONTINUE TO PAYMENT</a>
           </form>
         </div>
 
@@ -153,8 +180,6 @@ export default function Shipping() {
             <div className="checkout-total-price">${total + 6.78} USD</div>
           )}
         </div>
-        {/* {products.length > 3 && (<div className="extra-items">{products.length - 4} more item(s)</div>)} */}
-
       </div>
     </div >
   )

@@ -9,8 +9,8 @@ function reducer(state = {}, action) {
   let newState = {};
   switch (action.type) {
     case SAVE_INFO:
-      newState['country'] = action.info.country.value;
-      newState['state'] = action.info.state.value;
+      newState['country'] = action.info.country;
+      newState['state'] = action.info.state;
       newState['firstName'] = action.info.firstName;
       newState['lastName'] = action.info.lastName;
       newState['address'] = action.info.address;

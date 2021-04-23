@@ -118,3 +118,32 @@
 .shipping-type {
   margin-left: 5px;
 }
+
+.new-detail {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 10px;
+}
+
+.user-details {
+  border: 1px solid rgb(223, 223, 223);
+  background-color: #f4f6f8;
+  margin: 7px;
+  padding: 10px;
+  font-family: 'Lato';
+}
+
+.details-name {
+  color: #444444;
+  font-family: 'Lato';
+  font-size: 28px;
+}
+
+.details-header-edit {
+  cursor: pointer;
+}
+
+.details-header {
+  display: flex;
+  justify-content: space-between;
+}
