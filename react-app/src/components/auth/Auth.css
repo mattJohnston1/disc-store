@@ -22,8 +22,11 @@
   font-family: 'Lato';
   font-size: 28px;
   line-height: 42px;
-  position: relative;
-  left: 25%;
+  /* position: relative; */
+  /* left: 250px; */
+  text-align: center;
+  margin-bottom: 20px;
+  margin-top: 15px;
 }
 
 .sign-in-button {
@@ -54,6 +57,7 @@
   flex-direction: column;
   justify-content: center;
   margin: 30px;
+  height: 280px;
 }
 
 .other-header {

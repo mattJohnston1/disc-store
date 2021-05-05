@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Redirect, useHistory } from 'react-router-dom';
-import { signUp } from '../../services/auth';
+import { signUp, login } from '../../services/auth';
 
 const SignUpForm = ({ authenticated, setAuthenticated }) => {
   const history = useHistory()
@@ -46,6 +46,11 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
 
   if (authenticated) {
     return <Redirect to="/" />;
+  }
+
+  const demoLogin = async () => {
+    await login ("demo@aa.io", "password")
+    setAuthenticated(true)
   }
 
   return (
@@ -129,6 +134,7 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
             <li className="other-text-bullet">Save items to your wish list</li>
           </ul>
           <button onClick={() => history.push('/login')} className="sign-in-button">Login</button>
+          <button onClick={demoLogin} className="sign-in-button">Demo Login</button>
         </div>
       </div>
     </div>

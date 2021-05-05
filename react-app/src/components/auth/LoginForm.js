@@ -21,21 +21,26 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
       setErrors(user.errors);
     }
   };
-
+  
   const updateEmail = (e) => {
     setEmail(e.target.value);
   };
-
+  
   const updatePassword = (e) => {
     setPassword(e.target.value);
   };
-
+  
   if (authenticated && page === null) {
     return <Redirect to="/browse" />;
   } else if (authenticated && page) {
     return <Redirect to={page} />
   } else if (authenticated){
     return <Redirect to="/browse" />;
+  }
+  
+  const demoLogin = async () => {
+    await login ("demo@aa.io", "password")
+    setAuthenticated(true)
   }
 
   return (
@@ -85,6 +90,7 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
             <li className="other-text-bullet">Save items to your wish list</li>
           </ul>
           <button onClick={() => history.push('/sign-up')} className="sign-in-button">Create Account</button>
+          <button onClick={demoLogin} className="sign-in-button">Demo Login</button>
         </div>
       </div>
     </div>
