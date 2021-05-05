@@ -110,10 +110,10 @@ export default function Checkout({setAuthenticated, authenticated}) {
       height: "45px",
       border: "1px solid rgb(172, 172, 172)",
       borderRadius: "0",
-      minWidth: "300px",
+      minWidth: "321px",
       gridRowStart: "4",
       gridColumn: "2 / span3",
-      margin: "7px"
+      margin: "7px",
     }),
     menu: (provided, state) => ({
       ...provided,

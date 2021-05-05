@@ -109,6 +109,8 @@
 
 .checkout-form-location {
   display: flex;
+  flex-direction: row;
+  width: 100%;
 }
 
 .form-fname {

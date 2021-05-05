@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useDebugValue, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addDiscByIndex, removeByIndex } from '../../store/bag';
 import { closeBag } from '../../store/checkoutState';
@@ -8,10 +8,9 @@ import './Cart.css';
 
 export default function Cart() {
   const dispatch = useDispatch();
-  const bag = useSelector((state) => state.bag)
+  const reducer = (accumulator, currentValue) => accumulator + currentValue;
   const products = useSelector((state) => state.bag.products)
   const amounts = useSelector((state) => state.bag.amounts)
-  const reducer = (accumulator, currentValue) => accumulator + currentValue;
   const history = useHistory();
   return (
     <div className="modal-bg">

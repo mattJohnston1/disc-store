@@ -41,6 +41,9 @@ Array.prototype.discIndexOf = function (incomingDisc) {
   }
   return null;
 }
+
+const localStorage = window.localStorage;
+
 //add a delete function and an add to the amoounts based off an index
 const initialState = { products: [], amounts: [], total: 0.0 }
 
