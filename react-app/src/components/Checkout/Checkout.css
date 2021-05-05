@@ -109,6 +109,8 @@
 
 .checkout-form-location {
   display: flex;
+  flex-direction: row;
+  width: 100%;
 }
 
 .form-fname {
@@ -170,6 +172,10 @@
   align-items: center;
 } */
 
+.checkout-product-item-details {
+  width: 120px;
+}
+
 .checkout-login-btn {
   max-width: 300px;
   margin-left: 185px;
@@ -227,4 +233,27 @@
 
 .ps {
   margin-bottom: 50px;
+}
+
+.checkout-form-user {
+  padding: 10px 20px;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.checkout-form-user-logout {
+  color: rgb(0, 0, 0);
+  margin: 2px 5px;
+  width: 50px;
+}
+.checkout-form-user-logout:hover {
+  color: rgb(61, 27, 27);
+  margin: 2px 4px;
+  cursor: pointer;
+}
+
+.ERRORS {
+  margin-bottom: 50px;
+  border: 1px solid darkgray;
+  border-radius: 5px;
 }

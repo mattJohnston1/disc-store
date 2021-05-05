@@ -23,7 +23,7 @@ export default function Disc() {
     await dispatch(getDisc(id))
     setIsLoaded(true)
   }, [dispatch])
-
+  
   const handleClick = () => {
     dispatch(addDisc(disc))
     dispatch(openBag())

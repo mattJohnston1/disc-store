@@ -9,6 +9,12 @@
   justify-self: center; */
 }
 
+/* .navbar-btn-div {
+  display: flex;
+  flex-direction: row;
+  width: 400px;
+} */
+
 .navbar-img {
   width: auto;
   height: 20px;

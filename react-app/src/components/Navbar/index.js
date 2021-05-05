@@ -3,18 +3,21 @@ import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 import { openBag } from '../../store/checkoutState';
 import './Navbar.css';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { script } from './script'
-import { authenticate } from '../../services/auth';
+import { authenticate, logout } from '../../services/auth';
+import { setCurrentUser, setUser } from '../../store/currentUser';
 
 const NavBar = ({ setAuthenticated }) => {
   const dispatch = useDispatch();
 
   const [authorized, setAuthorized] = useState(false);
+  const user = useSelector((state) => state.currentUser.user)
 
   useEffect(() => {
     script()
-  })
+  }, [])
+  
   useEffect(() => {
     const auth = async () => {
       const res = await authenticate()
@@ -26,6 +29,12 @@ const NavBar = ({ setAuthenticated }) => {
     }
     const user = auth()
   })
+
+  const handleLogoutClick = async() => {
+    await logout();
+    dispatch(setUser(null))
+    setAuthenticated(false)
+  }
   return (
     <div className="navbar" id="navbar">
 
@@ -50,12 +59,22 @@ const NavBar = ({ setAuthenticated }) => {
           </div> */}
           <div className="spacer"></div>
           <div className="sign-in-btn">
-            <i class="fab fa-500px"></i>
-            <NavLink className="login" to="/login" exact={true}>
-              Login
-            </NavLink>
+            {!authorized && (
+              <>
+                <i class="fab fa-500px"></i>
+                <NavLink className="login" to="/login" exact={true}>
+                  Login
+                </NavLink>
+              </>
+            )}
             {authorized && (
-              <LogoutButton setAuthenticated={setAuthenticated} />
+              <div className="logout-btn-div" onClick={handleLogoutClick}>
+              <i class="fab fa-500px"> Logout</i>
+                {/* <div className="login" to="/login" exact={true}>
+                  Logout
+                </div> */}
+              </div>
+              // <LogoutButton setAuthenticated={setAuthenticated} />
             )}
           </div>
           <div className="view-cart-btn" onClick={() => { dispatch(openBag()) }}>

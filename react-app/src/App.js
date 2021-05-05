@@ -15,6 +15,7 @@ import BrowseBrands from "./components/BrowseBrands";
 import BrowseStabilities from "./components/BrowseStabilities";
 import Cart from './components/Cart';
 import Shipping from './components/Checkout/shipping';
+import { setCurrentUser } from "./store/currentUser";
 
 
 function App() {
@@ -30,10 +31,11 @@ function App() {
       if (!user.errors) {
         setAuthenticated(true);
       }
+      dispatch(setCurrentUser())
       setLoaded(true);
     })();
   }, []);
-
+  
   if (!loaded) {
     return null;
   }
@@ -72,8 +74,8 @@ function App() {
         <Route path="/discs/:id">
           <Disc />
         </Route>
-        <Route path="/checkout">
-          <Checkout />
+        <Route path="/checkout" >
+          <Checkout setAuthenticated={setAuthenticated}/>
         </Route>
         <Route path="/shipping">
           <Shipping />

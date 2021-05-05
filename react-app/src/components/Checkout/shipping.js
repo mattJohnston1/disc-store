@@ -72,7 +72,7 @@ export default function Shipping() {
   const handlePay = () => {
 
   }
-  return (
+  return ( products.length ? (
     <div className="checkout">
       <div className="checkout-form">
 
@@ -182,5 +182,6 @@ export default function Shipping() {
         </div>
       </div>
     </div >
+  ) : (<Redirect to="/" />)
   )
 }
