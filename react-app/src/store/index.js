@@ -7,6 +7,8 @@ import currentImage from './currentImage';
 import bag from './bag';
 import filteredDiscs from './filteredDiscs';
 import checkoutInfo from './checkoutInfo';
+import currentUser from './currentUser';
+import redirectPage from './redirect';
 
 const rootReducer = combineReducers({
   discs,
@@ -16,6 +18,8 @@ const rootReducer = combineReducers({
   bag,
   filteredDiscs,
   checkoutInfo,
+  currentUser,
+  redirectPage,
 })
 
 const logger = require('redux-logger').default;

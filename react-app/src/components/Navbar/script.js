@@ -3,7 +3,7 @@ export const script = () => {
 
   let navbar = document.getElementById("navbar-bottom")
   let sticky = navbar.offsetTop;
-
+  
   function myFunction() {
     if (window.pageYOffset >= sticky) {
       navbar.classList.add("sticky")
@@ -11,5 +11,5 @@ export const script = () => {
       navbar.classList.remove("sticky");
     }
   }
-
+  
 }

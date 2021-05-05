@@ -111,7 +111,7 @@
 .bag-item {
  background-color: white;
  margin-top: 20px;
- width: 100vh;
+ width: 470px;
  display: flex;
  flex-direction: row;
  align-items: center;
@@ -181,5 +181,9 @@
 }
 
 .cart-product-items-details {
+  width: 120px;
+}
+
+.checkout-product-item-details {
   width: 120px;
 }
