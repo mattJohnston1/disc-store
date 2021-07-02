@@ -1,7 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addDiscByIndex, removeByIndex } from '../../store/bag';
-import { reduceDiscByIndex } from '../../store/bag';
+import { addDiscByIndex, removeByIndex, reduceDiscByIndex } from '../../store/products';
 
 import '../Cart/Cart.css';
 
@@ -9,7 +8,7 @@ import '../Cart/Cart.css';
 export default function BagProduct({ product, idx }) {
   const dispatch = useDispatch();
   // const amounts = useSelector((state) => state.bag.amounts)
-  const amount = useSelector((state) => state.bag.amounts[idx])
+  const amount = useSelector((state) => state.products.amounts[idx])
   const handleDownClick = () => {
     if (amount === 1) {
       dispatch(removeByIndex(idx))

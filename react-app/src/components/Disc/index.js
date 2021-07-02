@@ -10,6 +10,7 @@ import './Disc.css'
 import { setImage } from '../../store/currentImage';
 import { addDisc } from '../../store/bag';
 import { openBag } from '../../store/checkoutState';
+import { addProduct } from '../../store/products';
 
 export default function Disc() {
   const dispatch = useDispatch()
@@ -23,9 +24,10 @@ export default function Disc() {
     await dispatch(getDisc(id))
     setIsLoaded(true)
   }, [dispatch])
-  
+
   const handleClick = () => {
-    dispatch(addDisc(disc))
+    // dispatch(addDisc(disc))
+    dispatch(addProduct(disc))
     dispatch(openBag())
   }
 
@@ -46,7 +48,7 @@ export default function Disc() {
           </div>
           <div className="disc-product-rating detail">
             ★★★★★
-        </div>
+          </div>
           <div className="disc-product-price detail">
             USD${disc.price}
           </div>
