@@ -9,6 +9,7 @@ import filteredDiscs from './filteredDiscs';
 import checkoutInfo from './checkoutInfo';
 import currentUser from './currentUser';
 import redirectPage from './redirect';
+import products from './products';
 
 const rootReducer = combineReducers({
   discs,
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   checkoutInfo,
   currentUser,
   redirectPage,
+  products,
 })
 
 const logger = require('redux-logger').default;

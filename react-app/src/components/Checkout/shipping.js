@@ -7,9 +7,9 @@ import './Shipping.css';
 export default function Shipping() {
   const dispatch = useDispatch()
   const history = useHistory()
-  const products = useSelector((state) => state.bag.products)
-  const amounts = useSelector((state) => state.bag.amounts)
-  const total = useSelector((state) => state.bag.total)
+  const products = useSelector((state) => state.products.products)
+  const amounts = useSelector((state) => state.products.amounts)
+  const total = useSelector((state) => state.products.total)
   const checkoutInfo = useSelector((state) => state.checkoutInfo)
 
   const [free, setFree] = useState(true)
@@ -72,7 +72,7 @@ export default function Shipping() {
   const handlePay = () => {
 
   }
-  return ( products.length ? (
+  return (products.length ? (
     <div className="checkout">
       <div className="checkout-form">
 

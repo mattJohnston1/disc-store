@@ -10,14 +10,14 @@ import './Checkout.css';
 import { states } from './states'
 import { savePage } from '../../store/redirect';
 
-export default function Checkout({setAuthenticated, authenticated}) {
+export default function Checkout({ setAuthenticated, authenticated }) {
   const dispatch = useDispatch()
   const history = useHistory()
 
-  const products = useSelector((state) => state.bag.products)
-  const amounts = useSelector((state) => state.bag.amounts)
+  const products = useSelector((state) => state.products.products)
+  const amounts = useSelector((state) => state.products.amounts)
   const countries = useMemo(() => countryList().getData(), [])
-  const total = useSelector((state) => state.bag.total);
+  const total = useSelector((state) => state.products.total);
   const checkoutInfo = useSelector((state) => state.checkoutInfo)
 
   const [country, setCountry] = useState('');
@@ -77,7 +77,7 @@ export default function Checkout({setAuthenticated, authenticated}) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     const checkoutInfo = {
       country,
       state,
@@ -89,17 +89,17 @@ export default function Checkout({setAuthenticated, authenticated}) {
       phoneNumber,
       zipCode,
     }
-      dispatch(saveInfo(checkoutInfo))
-      setCountry('')
-      setState('')
-      setFirstName('')
-      setLastName('')
-      setAddress('')
-      setEmail('')
-      setCity('')
-      setPhoneNumber('')
-      setZipCode('');
-      history.push('/shipping')
+    dispatch(saveInfo(checkoutInfo))
+    setCountry('')
+    setState('')
+    setFirstName('')
+    setLastName('')
+    setAddress('')
+    setEmail('')
+    setCity('')
+    setPhoneNumber('')
+    setZipCode('');
+    history.push('/shipping')
   }
 
 
@@ -139,7 +139,7 @@ export default function Checkout({setAuthenticated, authenticated}) {
 
   return (
     <div className="checkout">
-      
+
       <div className="checkout-form">
         <div className="checkout-nav">Cart  ›  <b>Information</b>  ›  Shipping  ›  Payment</div>
         <div className="checkout-login">
@@ -168,7 +168,7 @@ export default function Checkout({setAuthenticated, authenticated}) {
                 <div onClick={logoutUser} className="checkout-form-user-logout">Log Out</div>
               </div>
             </div>)}
-            
+
             <div className="checkout-form-header">CONTACT INFORMATION</div>
             <input value={email} required={true} onChange={(e) => { setEmail(e.target.value) }} type="text" className="form-email checkout-field" placeholder="Email" />
             <div className="checkout-form-header">SHIPPING ADDRESS</div>
@@ -185,7 +185,7 @@ export default function Checkout({setAuthenticated, authenticated}) {
                 onChange={(value) => { setCountry(value) }}
                 styles={customStyles}
                 placeholder="Country/Region"
-                required={true} 
+                required={true}
               />
               <Select className="form-state"
                 value={state}
@@ -193,7 +193,7 @@ export default function Checkout({setAuthenticated, authenticated}) {
                 onChange={(value) => { setState(value) }}
                 styles={customStyles}
                 placeholder="State"
-                required={true} 
+                required={true}
               />
             </div>
             <input value={zipCode} required={true} onChange={(e) => { setZipCode(e.target.value) }} className="form-zip-code checkout-field" type="text" placeholder="ZIP code" />
