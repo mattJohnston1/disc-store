@@ -11,6 +11,7 @@ import { setImage } from '../../store/currentImage';
 import { addDisc } from '../../store/bag';
 import { openBag } from '../../store/checkoutState';
 import { addProduct } from '../../store/products';
+import { addDiscToWatchlist, removeDiscFromWatchlist } from '../../store/watchlist';
 
 export default function Disc() {
   const dispatch = useDispatch()
@@ -18,6 +19,18 @@ export default function Disc() {
   const [isLoaded, setIsLoaded] = useState(false);
 
   const currentImage = useSelector((state) => state.currentImage.image);
+  const currentUser = useSelector((state) => state.currentUser.user);
+  const watchlist = useSelector((state) => state.watchlist)
+
+  let isIn = false;
+  const watchlistArr = Object.values(watchlist)
+  console.log("ATRTTTT", watchlistArr)
+  watchlistArr.forEach((disc) => {
+    if (disc.id == id) {
+      isIn = true;
+    }
+  })
+
   const disc = useSelector((state) => state.disc.disc);
 
   useEffect(async () => {
@@ -26,7 +39,6 @@ export default function Disc() {
   }, [dispatch])
 
   const handleClick = () => {
-    // dispatch(addDisc(disc))
     dispatch(addProduct(disc))
     dispatch(openBag())
   }
@@ -56,7 +68,12 @@ export default function Disc() {
             <AvailableColors />
           </div>
           <div className="disc-product-btns">
-            <button className="watchlist-button detail">ADD TO WATCHLIST</button>
+            {isIn && (
+              <button onClick={() => dispatch(removeDiscFromWatchlist(currentUser.id, id))} className="watchlist-button detail">ADDED TO WATCHLIST</button>
+            )}
+            {!isIn && (
+              <button onClick={() => dispatch(addDiscToWatchlist(currentUser.id, id))} className="watchlist-button detail">ADD TO WATCHLIST</button>
+            )}
             <button onClick={handleClick} className="disc-product-add-btn detail">ADD TO BAG</button>
           </div>
           <div className="disc-product-details">

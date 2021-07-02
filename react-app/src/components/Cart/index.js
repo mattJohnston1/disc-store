@@ -29,7 +29,6 @@ export default function Cart() {
           {amounts.length >= 1 && (
             <div className="yes-items">
               <div className="bag-count-items">Your Bag ({amounts.reduce(reducer)})</div>
-              {console.log("PRODUCTS ARR", productsArr)}
               {productsArr.map((product, idx) => {
                 if (idx < productsArr.length - 3) {
                   return <BagProduct product={product} idx={idx} />

@@ -7,17 +7,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import { script } from './script'
 import { authenticate, logout } from '../../services/auth';
 import { setCurrentUser, setUser } from '../../store/currentUser';
+import { getWatchlistDiscs } from '../../store/watchlist';
 
 const NavBar = ({ setAuthenticated }) => {
   const dispatch = useDispatch();
 
   const [authorized, setAuthorized] = useState(false);
   const user = useSelector((state) => state.currentUser.user)
-
+  dispatch(getWatchlistDiscs(1))
   useEffect(() => {
     script()
   }, [])
-  
+
   useEffect(() => {
     const auth = async () => {
       const res = await authenticate()
@@ -30,7 +31,7 @@ const NavBar = ({ setAuthenticated }) => {
     const user = auth()
   })
 
-  const handleLogoutClick = async() => {
+  const handleLogoutClick = async () => {
     await logout();
     dispatch(setUser(null))
     setAuthenticated(false)
@@ -58,6 +59,12 @@ const NavBar = ({ setAuthenticated }) => {
             </form>
           </div> */}
           <div className="spacer"></div>
+          {/* {authorized && (
+            <div className="watchlist-btn">
+              <img src="https://img.icons8.com/material-outlined/48/000000/wish-list.png" />
+              <div className="watchlist-btn-text">Watchlist</div>
+            </div>
+          )} */}
           <div className="sign-in-btn">
             {!authorized && (
               <>
@@ -69,7 +76,7 @@ const NavBar = ({ setAuthenticated }) => {
             )}
             {authorized && (
               <div className="logout-btn-div" onClick={handleLogoutClick}>
-              <i class="fab fa-500px"> Logout</i>
+                <i class="fab fa-500px"> Logout</i>
                 {/* <div className="login" to="/login" exact={true}>
                   Logout
                 </div> */}

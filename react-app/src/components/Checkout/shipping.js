@@ -65,7 +65,6 @@ export default function Shipping() {
 
     //   // }
     // )
-    // console.log("UPSPUSPUSUPSUUSP", res)
     // const data = res.json();
   })
 

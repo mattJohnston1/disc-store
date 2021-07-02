@@ -12,7 +12,7 @@ export default function BrowseStabilities() {
   const discsObj = useSelector((state) => state.discs);
   const discs = Object.values(discsObj)
   const { id } = useParams();
-  console.log(id)
+
   useEffect(async () => {
     await dispatch(getDiscs(false, true, id));
     setIsLoaded(true);
