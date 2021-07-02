@@ -1,15 +1,10 @@
 const OPEN = "watchlist/open";
 const CLOSE = "watchlist/close";
 
-export const openWatchlist = () => {
+export const openWatchlist = (open) => {
   return {
     type: OPEN,
-  }
-}
-
-export const closeWatchlist = () => {
-  return {
-    type: CLOSE,
+    open,
   }
 }
 
@@ -19,10 +14,7 @@ const reducer = (state = initialState, action) => {
   let newState = { open: false };
   switch (action.type) {
     case OPEN:
-      newState.open = true;
-      return newState;
-    case CLOSE:
-      newState.open = false;
+      newState.open = action.open;
       return newState;
     default:
       return state;

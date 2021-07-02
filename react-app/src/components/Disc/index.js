@@ -12,6 +12,7 @@ import { addDisc } from '../../store/bag';
 import { openBag } from '../../store/checkoutState';
 import { addProduct } from '../../store/products';
 import { addDiscToWatchlist, removeDiscFromWatchlist } from '../../store/watchlist';
+import { openWatchlist } from '../../store/watchlistState';
 
 export default function Disc() {
   const dispatch = useDispatch()
@@ -24,7 +25,6 @@ export default function Disc() {
 
   let isIn = false;
   const watchlistArr = Object.values(watchlist)
-  console.log("ATRTTTT", watchlistArr)
   watchlistArr.forEach((disc) => {
     if (disc.id == id) {
       isIn = true;
@@ -34,6 +34,7 @@ export default function Disc() {
   const disc = useSelector((state) => state.disc.disc);
 
   useEffect(async () => {
+    dispatch(openWatchlist(false))
     await dispatch(getDisc(id))
     setIsLoaded(true)
   }, [dispatch])
@@ -42,6 +43,7 @@ export default function Disc() {
     dispatch(addProduct(disc))
     dispatch(openBag())
   }
+
 
   return (isLoaded &&
     <div className="outer">

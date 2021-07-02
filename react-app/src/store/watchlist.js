@@ -23,7 +23,6 @@ export const getWatchlistDiscs = (userId) => async (dispatch) => {
 
   const discs = Object.values(data.discs)
   const discsArr = []
-  console.log(discs)
   for (let i = 0; i < discs.length; i++) {
     const discObj = await fetch(`/api/discs/${discs[i].disc_id}`)
     const discRes = await discObj.json();
@@ -48,10 +47,8 @@ export const removeDiscFromWatchlist = (userId, discId) => async (dispatch) => {
     method: "DELETE"
   })
   const data = await res.json()
-  console.log("OHHHHHHHH", data)
   const newDisc = await fetch(`/api/discs/${data.disc_id}`)
   const newDiscData = await newDisc.json()
-  console.log("OOOOOOOOOOOOOOOOOH I DID IT")
   dispatch(removeFromWatchlist(newDiscData))
 }
 
