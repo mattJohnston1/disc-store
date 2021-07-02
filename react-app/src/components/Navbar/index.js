@@ -7,17 +7,20 @@ import { useDispatch, useSelector } from 'react-redux';
 import { script } from './script'
 import { authenticate, logout } from '../../services/auth';
 import { setCurrentUser, setUser } from '../../store/currentUser';
+import { getWatchlistDiscs } from '../../store/watchlist';
+import { openWatchlist } from '../../store/watchlistState';
 
 const NavBar = ({ setAuthenticated }) => {
   const dispatch = useDispatch();
 
   const [authorized, setAuthorized] = useState(false);
   const user = useSelector((state) => state.currentUser.user)
-
+  const watchlistOpen = useSelector((state => state.watchlistState.open))
+  dispatch(getWatchlistDiscs(1))
   useEffect(() => {
     script()
   }, [])
-  
+
   useEffect(() => {
     const auth = async () => {
       const res = await authenticate()
@@ -30,9 +33,10 @@ const NavBar = ({ setAuthenticated }) => {
     const user = auth()
   })
 
-  const handleLogoutClick = async() => {
+  const handleLogoutClick = async () => {
     await logout();
     dispatch(setUser(null))
+    dispatch(openWatchlist(false))
     setAuthenticated(false)
   }
   return (
@@ -58,6 +62,18 @@ const NavBar = ({ setAuthenticated }) => {
             </form>
           </div> */}
           <div className="spacer"></div>
+
+          <a href={"https://mattjohnston1.github.io/"} className="watchlist-btn about-btn">
+            <img src="https://img.icons8.com/dotty/50/000000/guest-male.png" />
+            <div className="watchlist-btn-text">About Me</div>
+          </a>
+
+          {authorized && (
+            <div onClick={() => dispatch(openWatchlist(!watchlistOpen))} className="watchlist-btn">
+              <img src="https://img.icons8.com/material-outlined/48/000000/wish-list.png" />
+              <div className="watchlist-btn-text">Watchlist</div>
+            </div>
+          )}
           <div className="sign-in-btn">
             {!authorized && (
               <>
@@ -69,7 +85,7 @@ const NavBar = ({ setAuthenticated }) => {
             )}
             {authorized && (
               <div className="logout-btn-div" onClick={handleLogoutClick}>
-              <i class="fab fa-500px"> Logout</i>
+                <i class="fab fa-500px"> Logout</i>
                 {/* <div className="login" to="/login" exact={true}>
                   Logout
                 </div> */}
@@ -134,7 +150,7 @@ const NavBar = ({ setAuthenticated }) => {
           </ul>
         </nav>
       </div>
-    </div>
+    </div >
   );
 }
 

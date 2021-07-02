@@ -15,6 +15,10 @@
   width: 400px;
 } */
 
+.about-btn {
+  margin-right: 22px;
+}
+
 .navbar-img {
   width: auto;
   height: 20px;
@@ -143,4 +147,21 @@
   color: black;
   margin-left: 10px;
   text-decoration: none;
+}
+
+.watchlist-btn {
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+}
+
+.watchlist-btn > img {
+  height: 22px;
+}
+
+.watchlist-btn-text {
+  margin-top: 3px;
+  margin-left: 2px;
+  font-family: 'Lato';
+  font-size: 14px;
 }

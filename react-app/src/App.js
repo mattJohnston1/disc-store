@@ -16,6 +16,7 @@ import BrowseStabilities from "./components/BrowseStabilities";
 import Cart from './components/Cart';
 import Shipping from './components/Checkout/shipping';
 import { setCurrentUser } from "./store/currentUser";
+import Watchlist from './components/Watchlist';
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
   const [loaded, setLoaded] = useState(false);
 
   const bagOpen = useSelector((state) => state.bagState.open);
+  const watchlistOpen = useSelector((state) => state.watchlistState.open)
 
   useEffect(() => {
     (async () => {
@@ -35,7 +37,7 @@ function App() {
       setLoaded(true);
     })();
   }, []);
-  
+
   if (!loaded) {
     return null;
   }
@@ -43,6 +45,7 @@ function App() {
   return (
     <BrowserRouter>
       <NavBar setAuthenticated={setAuthenticated} />
+      {watchlistOpen && <Watchlist />}
       <Switch>
         <Route path="/login" exact={true}>
           <LoginForm
@@ -75,7 +78,7 @@ function App() {
           <Disc />
         </Route>
         <Route path="/checkout" >
-          <Checkout setAuthenticated={setAuthenticated}/>
+          <Checkout setAuthenticated={setAuthenticated} />
         </Route>
         <Route path="/shipping">
           <Shipping />

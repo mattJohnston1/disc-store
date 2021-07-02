@@ -13,7 +13,7 @@ export default function BrowseBrands() {
   const discs = Object.values(discsObj);
 
   const { id } = useParams();
-  console.log(id)
+
   useEffect(async () => {
     await dispatch(getDiscs(true, false, id));
     setIsLoaded(true);

@@ -11,7 +11,7 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
   const [password, setPassword] = useState("");
 
   const page = useSelector((state) => state.redirectPage.page)
-  console.log("REDIRECT PAGE", page)
+
   const onLogin = async (e) => {
     e.preventDefault();
     const user = await login(email, password);
@@ -21,25 +21,25 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
       setErrors(user.errors);
     }
   };
-  
+
   const updateEmail = (e) => {
     setEmail(e.target.value);
   };
-  
+
   const updatePassword = (e) => {
     setPassword(e.target.value);
   };
-  
+
   if (authenticated && page === null) {
     return <Redirect to="/browse" />;
   } else if (authenticated && page) {
     return <Redirect to={page} />
-  } else if (authenticated){
+  } else if (authenticated) {
     return <Redirect to="/browse" />;
   }
-  
+
   const demoLogin = async () => {
-    await login ("demo@aa.io", "password")
+    await login("demo@aa.io", "password")
     setAuthenticated(true)
   }
 
