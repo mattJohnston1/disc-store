@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink, useHistory } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 import { openBag } from '../../store/checkoutState';
 import './Navbar.css';
@@ -12,7 +12,7 @@ import { openWatchlist } from '../../store/watchlistState';
 
 const NavBar = ({ setAuthenticated }) => {
   const dispatch = useDispatch();
-  const history = useHistory()
+
   const [authorized, setAuthorized] = useState(false);
   const user = useSelector((state) => state.currentUser.user)
   const watchlistOpen = useSelector((state => state.watchlistState.open))
@@ -32,18 +32,6 @@ const NavBar = ({ setAuthenticated }) => {
     }
     const user = auth()
   })
-
-  const discIdRedirect = useSelector((state) => state.watchlistRedirect.discId)
-
-  useEffect(() => {
-    if (discIdRedirect !== null) {
-
-      history.push(`/discs/${discIdRedirect}`)
-    }
-  }, [discIdRedirect])
-
-
-
 
   const handleLogoutClick = async () => {
     await logout();
@@ -88,12 +76,12 @@ const NavBar = ({ setAuthenticated }) => {
           )}
           <div className="sign-in-btn">
             {!authorized && (
-              <div onClick={() => history.push('/login')}>
+              <>
                 <i class="fab fa-500px"></i>
                 <NavLink className="login" to="/login" exact={true}>
                   Login
                 </NavLink>
-              </div>
+              </>
             )}
             {authorized && (
               <div className="logout-btn-div" onClick={handleLogoutClick}>
@@ -105,7 +93,7 @@ const NavBar = ({ setAuthenticated }) => {
               // <LogoutButton setAuthenticated={setAuthenticated} />
             )}
           </div>
-          <div className="view-cart-btn" onClick={() => { dispatch(openWatchlist(false)); dispatch(openBag()) }}>
+          <div className="view-cart-btn" onClick={() => { dispatch(openBag()) }}>
             <i class="fas fa-shopping-cart"></i> View Cart
           </div>
         </div>

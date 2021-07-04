@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Route, Switch, useHistory } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
@@ -21,14 +21,11 @@ import Watchlist from './components/Watchlist';
 
 function App() {
   const dispatch = useDispatch();
-  const history = useHistory
   const [authenticated, setAuthenticated] = useState(false);
   const [loaded, setLoaded] = useState(false);
 
   const bagOpen = useSelector((state) => state.bagState.open);
   const watchlistOpen = useSelector((state) => state.watchlistState.open)
-
-
 
   useEffect(() => {
     (async () => {
@@ -40,8 +37,6 @@ function App() {
       setLoaded(true);
     })();
   }, []);
-
-
 
   if (!loaded) {
     return null;
@@ -76,6 +71,9 @@ function App() {
         <Route path="/browse/:type/:id">
           <Browse />
         </Route>
+        {/* <Route path="/browse/stabilities/:id">
+          <Browse />
+        </Route> */}
         <Route path="/discs/:id">
           <Disc />
         </Route>

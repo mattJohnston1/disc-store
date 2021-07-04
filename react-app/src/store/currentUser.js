@@ -26,6 +26,7 @@ function reducer(state = {}, action) {
           newState['user'] = null
         }
       }
+      // newState['user'] = action.user
       return newState;
     default:
       return state;

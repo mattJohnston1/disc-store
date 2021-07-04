@@ -1,11 +1,10 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { redirectTo } from '../../store/watchlistRedirect';
-import { openWatchlist } from '../../store/watchlistState';
+import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import './watchlist.css';
 
-export default function Cart({ history }) {
-  const dispatch = useDispatch()
+export default function Cart() {
+  let history = useHistory()
   const watchlist = useSelector((state) => state.watchlist)
   const items = Object.values(watchlist)
 
@@ -15,7 +14,7 @@ export default function Cart({ history }) {
       <div className="wl-items">
         {items.map((item) => (
           <div className="wl-item"
-            onClick={() => dispatch(redirectTo(item.id))}
+            onClick={() => history.push(`/discs/${item.id}`)}
           >
             <img src={item.images[0]} className="wl-item-img" />
             <div className="wl-item-details">
