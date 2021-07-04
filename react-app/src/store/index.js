@@ -12,6 +12,7 @@ import redirectPage from './redirect';
 import products from './products';
 import watchlist from './watchlist';
 import watchlistState from './watchlistState';
+import watchlistRedirect from './watchlistRedirect';
 
 const rootReducer = combineReducers({
   discs,
@@ -26,6 +27,7 @@ const rootReducer = combineReducers({
   products,
   watchlist,
   watchlistState,
+  watchlistRedirect,
 })
 
 const logger = require('redux-logger').default;
