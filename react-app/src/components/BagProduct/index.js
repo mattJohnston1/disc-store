@@ -32,7 +32,7 @@ export default function BagProduct({ product, idx }) {
         <button className="counter-up counter" onClick={() => { dispatch(addDiscByIndex(idx)) }}>+</button>
       </div>
       <div className="cart-product-price a">
-        <div className="cart-product-price">$ {product.price}</div>
+        <div className="cart-product-price">${product.price}</div>
       </div>
     </div>
   )

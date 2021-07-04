@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getDisc } from '../../store/disc';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import AvailableColors from '../AvailableColors';
 import DiscDetails from '../DiscDetails';
 import ShippingDetails from '../ShippingDetails';
-import Cart from '../Cart';
 import './Disc.css'
 import { setImage } from '../../store/currentImage';
-import { addDisc } from '../../store/bag';
 import { openBag } from '../../store/checkoutState';
 import { addProduct } from '../../store/products';
 import { addDiscToWatchlist, removeDiscFromWatchlist } from '../../store/watchlist';
@@ -16,12 +14,14 @@ import { openWatchlist } from '../../store/watchlistState';
 
 export default function Disc() {
   const dispatch = useDispatch()
+  const history = useHistory()
   const { id } = useParams();
   const [isLoaded, setIsLoaded] = useState(false);
 
   const currentImage = useSelector((state) => state.currentImage.image);
   const currentUser = useSelector((state) => state.currentUser.user);
   const watchlist = useSelector((state) => state.watchlist)
+  const watchlistRedirect = useSelector((state) => state.watchlistRedirect.discId)
 
   let isIn = false;
   const watchlistArr = Object.values(watchlist)
@@ -34,15 +34,24 @@ export default function Disc() {
   const disc = useSelector((state) => state.disc.disc);
 
   useEffect(async () => {
-    dispatch(openWatchlist(false))
     await dispatch(getDisc(id))
     setIsLoaded(true)
   }, [dispatch])
+
+  useEffect(async () => {
+    setIsLoaded(false)
+    if (watchlistRedirect !== null) {
+      dispatch(openWatchlist(false))
+      await dispatch(getDisc(watchlistRedirect))
+      setIsLoaded(true)
+    }
+  }, [watchlistRedirect])
 
   const handleClick = () => {
     dispatch(addProduct(disc))
     dispatch(openBag())
   }
+
 
 
   return (isLoaded &&
@@ -71,10 +80,24 @@ export default function Disc() {
           </div>
           <div className="disc-product-btns">
             {isIn && (
-              <button onClick={() => dispatch(removeDiscFromWatchlist(currentUser.id, id))} className="watchlist-button detail">ADDED TO WATCHLIST</button>
+              <button onClick={() => {
+                if (currentUser) {
+                  dispatch(removeDiscFromWatchlist(currentUser.id, id))
+                } else {
+                  history.push('/login')
+                }
+              }
+
+              } className="watchlist-button detail">ADDED TO WATCHLIST</button>
             )}
             {!isIn && (
-              <button onClick={() => dispatch(addDiscToWatchlist(currentUser.id, id))} className="watchlist-button detail">ADD TO WATCHLIST</button>
+              <button onClick={() => {
+                if (currentUser !== null) {
+                  dispatch(addDiscToWatchlist(currentUser.id, id))
+                } else {
+                  history.push('/login')
+                }
+              }} className="watchlist-button detail">ADD TO WATCHLIST</button>
             )}
             <button onClick={handleClick} className="disc-product-add-btn detail">ADD TO BAG</button>
           </div>
